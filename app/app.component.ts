@@ -1,14 +1,7 @@
-import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
+import {Component, OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
-
-var HEROES: Hero[] = [
-	{ "id": 11, "name": "SilverSurfer" },
-	{ "id": 12, "name": "Batman" },
-	{ "id": 13, "name": "Whateverdude" },
-	{ "id": 14, "name": "WhyMan" }
-];
+import {HeroService} from './hero.service';
 
 @Component({
 	selector: 'my-app',
@@ -67,16 +60,27 @@ var HEROES: Hero[] = [
         margin-right: .8em;
         border-radius: 4px 0px 0px 4px;
       }`],
-      directives: [HeroDetailComponent]
+      directives: [HeroDetailComponent],
+      providers: [HeroService]
 })
 
-export class AppComponent { 
+export class AppComponent implements OnInit { 
 	public title = "Heroes";
-	public heroes = HEROES;
+  public heroes: Hero[];
   public selectedHero: Hero;
 
+  constructor(private _heroService: HeroService) { };
+
+  getHeroes() {
+      this._heroService.getHeroes().then(heroes => this.heroes = heroes);
+  };
+
+  ngOnInit() {
+      this.getHeroes();
+  };
+
   onSelect(hero: Hero) {
-  this.selectedHero = hero;
+    this.selectedHero = hero;
   };
 }
 

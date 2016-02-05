@@ -1,5 +1,4 @@
 import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
 import {Hero} from './hero';
 
 @Component({
@@ -16,5 +15,4 @@ import {Hero} from './hero';
 
 export class HeroDetailComponent { 
 	public hero: Hero;
-
 }
