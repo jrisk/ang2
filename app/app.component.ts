@@ -1,10 +1,7 @@
 import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
-
-interface Hero {
-	id: number;
-	name?: string;
-};
+import {Hero} from './hero';
+import {HeroDetailComponent} from './hero-detail.component';
 
 var HEROES: Hero[] = [
 	{ "id": 11, "name": "SilverSurfer" },
@@ -15,22 +12,15 @@ var HEROES: Hero[] = [
 
 @Component({
 	selector: 'my-app',
-	directives: [FORM_DIRECTIVES],
 	template: `<h1>{{title}}</h1>
 <ul class="heroes">
 <li *ngFor="#hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
 	<span class="badge">{{hero.id}}</span> {{hero.name}}
 </li>
 </ul>
-<div *ngIf="selectedHero">
-<h2>details {{selectedHero.name}}</h2>
-<div><label>ID: </label> {{selectedHero.id}}</div>
-<div><label>Name: </label>
-<input [(ngModel)]="selectedHero.name" placeholder="name">
-</div>
-</div>
+<my-hero-detail [hero]="selectedHero"></my-hero-detail>
 `,
-	styles:[`
+  styles: [`
       .selected {
         background-color: #CFD8DC !important;
         color: white;
@@ -76,8 +66,8 @@ var HEROES: Hero[] = [
         height: 1.8em;
         margin-right: .8em;
         border-radius: 4px 0px 0px 4px;
-      }
-    `]
+      }`],
+      directives: [HeroDetailComponent]
 })
 
 export class AppComponent { 
