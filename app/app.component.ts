@@ -17,13 +17,17 @@ var HEROES: Hero[] = [
 	selector: 'my-app',
 	directives: [FORM_DIRECTIVES],
 	template: `<h1>{{title}}</h1>
-<h2>Heroes List<h2>
 <ul class="heroes">
 <li *ngFor="#hero of heroes" (click)="onSelect(hero)">
 	<span class="badge">{{hero.id}}</span> {{hero.name}}
 </li>
 </ul>
-<input [(ngModel)]="heroes[1].name" placeholder="name">
+<div *ngIf="selectedHero">
+<h2>details {{selectedHero.name}}</h2>
+<div><label>ID: </label> {{selectedHero.id}}</div>
+<div><label>Name: </label>{{selectedHero.name}}</div>
+<input [(ngModel)]="selectedHero.name" placeholder="name">
+</div>
 `,
 	styles:[`
       .selected {
@@ -34,7 +38,7 @@ var HEROES: Hero[] = [
         margin: 0 0 2em 0;
         list-style-type: none;
         padding: 0;
-        width: 10em;
+        width: 20em;
       }
       .heroes li {
         cursor: pointer;
@@ -78,6 +82,11 @@ var HEROES: Hero[] = [
 export class AppComponent { 
 	public title = "Heroes";
 	public heroes = HEROES;
+  public selectedHero: Hero;
+
+  onSelect(hero: Hero) {
+  this.selectedHero = hero;
+  };
 }
 
 
