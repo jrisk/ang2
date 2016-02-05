@@ -1,6 +1,5 @@
 import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {FORM_DIRECTIVES, CORE_DIRECTIVES} from 'angular2/common';
 
 interface Hero {
 	id: number;
@@ -20,7 +19,7 @@ var HEROES: Hero[] = [
 	template: `<h1>{{title}}</h1>
 <h2>Heroes List<h2>
 <ul class="heroes">
-<li *ngFor="#hero in heroes">
+<li *ngFor="#hero of heroes">
 	<span class="badge">{{hero.id}}</span> {{hero.name}}
 </li>
 </ul>
