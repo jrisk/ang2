@@ -18,15 +18,16 @@ var HEROES: Hero[] = [
 	directives: [FORM_DIRECTIVES],
 	template: `<h1>{{title}}</h1>
 <ul class="heroes">
-<li *ngFor="#hero of heroes" (click)="onSelect(hero)">
+<li *ngFor="#hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
 	<span class="badge">{{hero.id}}</span> {{hero.name}}
 </li>
 </ul>
 <div *ngIf="selectedHero">
 <h2>details {{selectedHero.name}}</h2>
 <div><label>ID: </label> {{selectedHero.id}}</div>
-<div><label>Name: </label>{{selectedHero.name}}</div>
+<div><label>Name: </label>
 <input [(ngModel)]="selectedHero.name" placeholder="name">
+</div>
 </div>
 `,
 	styles:[`
