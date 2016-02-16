@@ -1,0 +1,25 @@
+{
+  "name": "angular-testing",
+  "version": "1.0.0",
+  "description": "testing",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
+  },
+  "keywords": [
+    "test",
+    "jasmine",
+    "angular"
+  ],
+  "author": "me",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^1.0.0",
+    "jasmine-core": "2.4.1",
+    "live-server": "^0.9.1",
+    "typescript": "^1.7.5"
+  }
+}
