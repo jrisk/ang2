@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Planner in Angular2</title>
+<!-- load scripts and polyfills -->
+<script src="node_modules/es6-shim/es6-shim.min.js"></script>
+<script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+<script src="node_modules/systemjs/dist/system.src.js"></script>
+<script src="node_modules/rxjs/bundles/Rx.js"></script>
+<script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+<!-- Configure System.js -->
+<script>
+System.config({
+	packages: {
+		app: {
+			format: 'register',
+			defaultExtension: 'js'
+		}
+	}
+});
+System.import('app/main')
+	.then(null, console.error.bind(console));
+</script>
+
+</head>
+<body>
+
+<div id="js">node</div>
+
+<!-- load the app from main -->
+<planner>Loading....</planner>
+
+<script>
+
+var fade = function(node) {
+	var level = 1;
+
+	var step = function() {
+		var hex = level.toString(16);
+		node.style.backgroundColor = "#FFFF" + hex + hex;
+		if (level < 15) {
+			level++;
+			setTimeout(step, 100);
+			}
+		};
+	setTimeout(step, 100);
+	}
+
+setInterval(function () {
+	fade(document.getElementById('js'));
+}, 2000);
+
+</script>
+
+</body>
+</html>
