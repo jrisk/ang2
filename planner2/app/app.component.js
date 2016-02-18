@@ -18,14 +18,14 @@ System.register(['angular2/core'], function(exports_1) {
         execute: function() {
             PlannerComponent = (function () {
                 function PlannerComponent() {
-                    this.title = "Planner App 1.0";
+                    this.title = "Planner Angular+Node+Express";
                     this.message = "Hello!";
                 }
                 PlannerComponent = __decorate([
                     core_1.Component({
                         selector: 'planner',
-                        template: "<h1>title</h1><hr>\n\t<h2>message</h2>",
-                        styles: ["\n\th1 {\n\t\tfont-family: Ariel, Times New Roman;\n\t\tbox-shadow: 0.2em 0.2em 0.2em #999;\n\t}\n\n\th2 {\n\t\tfont-color: blue;\n\t\tbackground-color: yellow;\n\t\tborder: .5em solid black;\n\t}\n\t"],
+                        template: "<h1>{{title}}</h1><hr>\n\t<h2>{{message}}</h2>",
+                        styles: ["\n\th1 {\n\t\tfont-family: Ariel, Times New Roman;\n\t\tbox-shadow: 0.2em 0.2em 0.2em #999;\n\t}\n\th2 {\n\t\tfont-color: blue;\n\t\tbackground-color: yellow;\n\t\tborder: .5em solid black;\n\t}\n\t"],
                         directives: []
                     }), 
                     __metadata('design:paramtypes', [])
