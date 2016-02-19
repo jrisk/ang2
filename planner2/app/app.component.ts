@@ -1,6 +1,7 @@
 import {Component, OnInit} from 'angular2/core'
 import {Plan} from './plan'
 import {PlanService} from './plan.service'
+import {PlanDetailComponent} from './plan_detail.component'
 
 interface Week {
 	monday: boolean;
@@ -19,12 +20,12 @@ interface Week {
 	<!--<h3>{{plan.title}}</h3>
 	<input [(ngModel)]="plan.title" placeholder="plan title yo">-->
 	<ul class="plans">
-	<li *ngFor="#plan of plans">
+	<li *ngFor="#plan of plans" (click)="onPress(plan)">
 	<span>{{plan.date}}</span><b>{{plan.start}}</b>
 	</li>
 	</ul>
+	<plan-detail [plan]="pressedPlan"></plan-detail>
 	`,
-
 	styles: [`
 	h1 {
 		font-family: Ariel, Times New Roman;
@@ -34,13 +35,20 @@ interface Week {
 		font-color: blue;
 	}
 	`],
-	directives: [],
+	directives: [PlanDetailComponent],
 	providers: [PlanService]
 })
 
 export class PlannerComponent {
 	public title = "Planner Angular+Node+Express";
 	public message = "Hello!";
+
+	public onPress(plan: Plan) {
+		this.pressedPlan = plan;
+	}
+
+	public pressedPlan: Plan;
+
 	public plans: Plan[];
 
 	constructor(public _planService: PlanService) { };
