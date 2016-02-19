@@ -1,5 +1,6 @@
-import {Component} from 'angular2/core'
+import {Component, OnInit} from 'angular2/core'
 import {Plan} from './plan'
+import {PlanService} from './plan.service'
 
 interface Week {
 	monday: boolean;
@@ -15,8 +16,15 @@ interface Week {
 	selector: 'planner',
 	template: `<h1>{{title}}</h1><hr>
 	<h2>{{message}}</h2>
-	<h3>{{plan.title}}</h3>
-	<input [(ngModel)]="plan.title" placeholder="plan title yo">`,
+	<!--<h3>{{plan.title}}</h3>
+	<input [(ngModel)]="plan.title" placeholder="plan title yo">-->
+	<ul class="plans">
+	<li *ngFor="#plan of plans">
+	<span>{{plan.date}}</span><b>{{plan.start}}</b>
+	</li>
+	</ul>
+	`,
+
 	styles: [`
 	h1 {
 		font-family: Ariel, Times New Roman;
@@ -24,19 +32,25 @@ interface Week {
 	}
 	h2 {
 		font-color: blue;
-		background-color: yellow;
-		border: .5em solid black;
 	}
 	`],
-	directives: []
+	directives: [],
+	providers: [PlanService]
 })
 
 export class PlannerComponent {
 	public title = "Planner Angular+Node+Express";
 	public message = "Hello!";
+	public plans: Plan[];
 
-	public plan: Plan = {
-		title: 'Plan GoTo'
+	constructor(public _planService: PlanService) { };
+
+	getPlans() {
+		this._planService.getPlans().then(plans => this.plans = plans);
+	}
+
+	ngOnInit() {
+		this.getPlans();
 	}
 }
 

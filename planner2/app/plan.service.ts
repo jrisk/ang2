@@ -1,5 +1,5 @@
-import {PLANS} from './mock_plans';
-import {Injectable} from 'angular2/core';
+import {PLANS} from './mock_plans'
+import {Injectable} from 'angular2/core'
 
 @Injectable();
 

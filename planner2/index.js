@@ -34,7 +34,6 @@ app.listen(3000);
 app.get('/', (req,res) => {
 	console.log('app works on port 3000');
 	res.sendFile(path.join(__dirname + '/public/planner.html'));
-	console.log(server);
 });
 
 
