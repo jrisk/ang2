@@ -1,5 +1,5 @@
 import {bootstrap} from 'angular2/platform/browser'
-import {PlannerComponent} from './app.component'
+import {AppComponent} from './app.component'
 
 
-bootstrap(PlannerComponent);
+bootstrap(AppComponent);
