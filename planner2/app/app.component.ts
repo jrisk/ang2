@@ -39,7 +39,7 @@ interface Week {
 	providers: [PlanService]
 })
 
-export class PlannerComponent {
+export class PlannerComponent { //dont need implements OnInit for ngOnInit to work
 	public title = "Planner Angular+Node+Express";
 	public message = "Hello!";
 
@@ -51,7 +51,7 @@ export class PlannerComponent {
 
 	public plans: Plan[];
 
-	constructor(public _planService: PlanService) { };
+	constructor(private _planService: PlanService) { };
 
 	getPlans() {
 		this._planService.getPlans().then(plans => this.plans = plans);
