@@ -31,7 +31,7 @@ System.register(['angular2/core', './plan.service', './planner.component'], func
                     core_1.Component({
                         selector: 'planner',
                         template: "<h1>{{title}}</h1><hr>\n\t<h2>{{message}}</h2>\n\t<plan-dash></plan-dash>\n\t",
-                        styles: ["\n\th1 {\n\t\tfont-family: Ariel, Times New Roman;\n\t\tbox-shadow: 0.2em 0.2em 0.2em #999;\n\t}\n\th2 {\n\t\tfont-color: blue;\n\t}\n\t"],
+                        styles: ["\n\th1 {\n\t\tfont-family: Ariel, Times New Roman;\n\t\tbox-shadow: 0.2em 0.2em 0.2em #999;\n\t}\n\th2 {\n\t\tcolor: #888;\n\t}\n\t"],
                         directives: [planner_component_1.PlannerComponent],
                         providers: [plan_service_1.PlanService]
                     }), 

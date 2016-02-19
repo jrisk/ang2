@@ -14,7 +14,7 @@ import {PlannerComponent} from './planner.component'
 		box-shadow: 0.2em 0.2em 0.2em #999;
 	}
 	h2 {
-		font-color: blue;
+		color: #888;
 	}
 	`],
 	directives: [PlannerComponent],
