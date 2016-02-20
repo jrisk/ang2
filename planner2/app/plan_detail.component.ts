@@ -6,7 +6,7 @@ import {PlanService} from './plan.service'
 
 @Component({
 	selector: 'plan-detail',
-	templateUrl: './plan_detail.component.html',
+	templateUrl: '../public/plan_detail.component.html',
 	inputs: ['plan']
 })
 

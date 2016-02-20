@@ -45,7 +45,7 @@ System.register(['angular2/core', './mock_plans', 'angular2/router', './plan.ser
                 PlanDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'plan-detail',
-                        templateUrl: './plan_detail.component.html',
+                        templateUrl: '../public/plan_detail.component.html',
                         inputs: ['plan']
                     }), 
                     __metadata('design:paramtypes', [plan_service_1.PlanService, router_1.RouteParams])
