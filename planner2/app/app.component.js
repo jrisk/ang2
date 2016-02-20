@@ -48,6 +48,13 @@ System.register(['angular2/core', './plan.service', './planner.component', 'angu
                             component: dashboard_component_1.DashboardComponent,
                             useAsDefault: true
                         },
+                        /*
+                        {
+                            path: '/detail/:id',
+                            name: 'PlanDetail',
+                            component: PlanDetailComponent
+                        },
+                        */
                         {
                             path: '/plans',
                             name: 'Plans',

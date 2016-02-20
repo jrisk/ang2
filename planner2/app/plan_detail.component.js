@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './mock_plans', 'angular2/router', './plan.service'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,24 +8,47 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, mock_plans_1, router_1, plan_service_1;
     var PlanDetailComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (mock_plans_1_1) {
+                mock_plans_1 = mock_plans_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (plan_service_1_1) {
+                plan_service_1 = plan_service_1_1;
             }],
         execute: function() {
             PlanDetailComponent = (function () {
-                function PlanDetailComponent() {
+                function PlanDetailComponent(_planService, _routeParams) {
+                    this._planService = _planService;
+                    this._routeParams = _routeParams;
                 }
+                PlanDetailComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    var id = +this._routeParams.get('id');
+                    this._planService.getPlans(id)
+                        .then(function (plan) { return _this.plan = plan; });
+                };
+                PlanDetailComponent.prototype.getPlans = function (id) {
+                    return Promise.resolve(mock_plans_1.PLANS).then(function (plans) { return plans.filter(function (plan) { return plan.id === id; })[0]; });
+                };
+                PlanDetailComponent.prototype.goBack = function () {
+                    window.history.back();
+                };
                 PlanDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'plan-detail',
-                        template: "\n\t<div *ngIf=\"plan\">\n\t<h1>{{plan.title}}</h1>\n\t<h2>Ends at: {{plan.end}}</h2>\n\t</div>",
+                        templateUrl: './plan_detail.component.html',
                         inputs: ['plan']
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [plan_service_1.PlanService, router_1.RouteParams])
                 ], PlanDetailComponent);
                 return PlanDetailComponent;
             })();

@@ -36,11 +36,13 @@ import {PlanDetailComponent} from './plan_detail.component'
 		useAsDefault: true
 
 	},
+	/*
+	{
 		path: '/detail/:id',
 		name: 'PlanDetail',
 		component: PlanDetailComponent
 	},
-
+	*/
 	{
 		path: '/plans',
 		name: 'Plans',

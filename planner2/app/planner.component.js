@@ -40,7 +40,7 @@ System.register(['angular2/core', './plan.service', './plan_detail.component'], 
                 PlannerComponent = __decorate([
                     core_1.Component({
                         selector: 'plan-dash',
-                        template: "<h1>{{title}}</h1><hr>\n\t<h2>{{message}}</h2>\n\t<!--<h3>{{plan.title}}</h3>\n\t<input [(ngModel)]=\"plan.title\" placeholder=\"plan title yo\">-->\n\t<ul class=\"plans\">\n\t<li *ngFor=\"#plan of plans\" (click)=\"onPress(plan)\">\n\t<span>{{plan.date}}</span><b>{{plan.start}}</b>\n\t</li>\n\t</ul>\n\t<plan-detail [plan]=\"pressedPlan\"></plan-detail>\n\t",
+                        template: "<h1>{{title}}</h1><hr>\n\t<h2>{{message}}</h2>\n\t<ul class=\"plans\">\n\t<li *ngFor=\"#plan of plans\" (click)=\"onPress(plan)\">\n\t<span>{{plan.date}}</span><b>{{plan.start}}</b>\n\t</li>\n\t</ul>\n\t<plan-detail [plan]=\"pressedPlan\"></plan-detail>\n\t",
                         styles: ["\n\th1 {\n\t\tfont-family: Ariel, Times New Roman;\n\t\tbox-shadow: 0.2em 0.2em 0.2em #999;\n\t}\n\th2 {\n\t\tfont-color: blue;\n\t}\n\t"],
                         directives: [plan_detail_component_1.PlanDetailComponent],
                     }), 
