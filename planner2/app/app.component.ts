@@ -3,6 +3,7 @@ import {PlanService} from './plan.service'
 import {PlannerComponent} from './planner.component'
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from 'angular2/router'
 import {DashboardComponent} from './dashboard.component'
+import {PlanDetailComponent} from './plan_detail.component'
 
 @Component({
 	selector: 'planner',
@@ -35,6 +36,11 @@ import {DashboardComponent} from './dashboard.component'
 		useAsDefault: true
 
 	},
+		path: '/detail/:id',
+		name: 'PlanDetail',
+		component: PlanDetailComponent
+	},
+
 	{
 		path: '/plans',
 		name: 'Plans',
