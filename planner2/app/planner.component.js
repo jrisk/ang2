@@ -1,4 +1,4 @@
-System.register(['angular2/core', './plan.service', './plan_detail.component'], function(exports_1) {
+System.register(['angular2/core', './plan.service', './plan_detail.component', 'angular2/router'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './plan.service', './plan_detail.component'], 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, plan_service_1, plan_detail_component_1;
+    var core_1, plan_service_1, plan_detail_component_1, router_1;
     var PlannerComponent;
     return {
         setters:[
@@ -20,15 +20,16 @@ System.register(['angular2/core', './plan.service', './plan_detail.component'], 
             },
             function (plan_detail_component_1_1) {
                 plan_detail_component_1 = plan_detail_component_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             PlannerComponent = (function () {
-                function PlannerComponent(_planService) {
+                function PlannerComponent(_router, _planService) {
+                    this._router = _router;
                     this._planService = _planService;
                 }
-                PlannerComponent.prototype.onPress = function (plan) {
-                    this.pressedPlan = plan;
-                };
                 ;
                 PlannerComponent.prototype.getPlans = function () {
                     var _this = this;
@@ -37,14 +38,17 @@ System.register(['angular2/core', './plan.service', './plan_detail.component'], 
                 PlannerComponent.prototype.ngOnInit = function () {
                     this.getPlans();
                 };
+                PlannerComponent.prototype.onPress = function (plan) {
+                    this.pressedPlan = plan;
+                };
                 PlannerComponent = __decorate([
                     core_1.Component({
                         selector: 'plan-dash',
-                        template: "<h1>{{title}}</h1><hr>\n\t<h2>{{message}}</h2>\n\t<ul class=\"plans\">\n\t<li *ngFor=\"#plan of plans\" (click)=\"onPress(plan)\">\n\t<span>{{plan.date}}</span><b>{{plan.start}}</b>\n\t</li>\n\t</ul>\n\t<plan-detail [plan]=\"pressedPlan\"></plan-detail>\n\t",
-                        styles: ["\n\th1 {\n\t\tfont-family: Ariel, Times New Roman;\n\t\tbox-shadow: 0.2em 0.2em 0.2em #999;\n\t}\n\th2 {\n\t\tfont-color: blue;\n\t}\n\t"],
+                        template: "<h1>{{title}}</h1><hr>\n\t<h2>{{message}}</h2>\n\t<ul class=\"plans\">\n\t<li id=\"lister\" *ngFor=\"#plan of plans\" (click)=\"onPress(plan)\">\n\t<span>{{plan.date}}</span><b>{{plan.start}}</b>\n\t</li>\n\t</ul>\n\t<plan-detail [plan]=\"pressedPlan\"></plan-detail>\n\t",
+                        styles: ["\n\th1 {\n\t\tfont-family: Ariel, Times New Roman;\n\t\tbox-shadow: 0.2em 0.2em 0.2em #999;\n\t}\n\th2 {\n\t\tfont-color: blue;\n\t}\n\tlister {\n\t\tfont-color: red;\n\t}\n\t"],
                         directives: [plan_detail_component_1.PlanDetailComponent],
                     }), 
-                    __metadata('design:paramtypes', [plan_service_1.PlanService])
+                    __metadata('design:paramtypes', [router_1.Router, plan_service_1.PlanService])
                 ], PlannerComponent);
                 return PlannerComponent;
             })();

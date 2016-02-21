@@ -14,6 +14,9 @@ System.register(['./mock_plans'], function(exports_1) {
                 PlanService.prototype.getPlans = function () {
                     return Promise.resolve(mock_plans_1.PLANS);
                 };
+                PlanService.prototype.getPlan = function (id) {
+                    return Promise.resolve(mock_plans_1.PLANS).then(function (plans) { return plans.filter(function (plan) { return plan.id === id; })[0]; });
+                };
                 return PlanService;
             })();
             exports_1("PlanService", PlanService);

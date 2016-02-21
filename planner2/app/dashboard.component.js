@@ -31,7 +31,7 @@ System.register(['angular2/core', './plan.service', 'angular2/router'], function
                 DashboardComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this._planService.getPlans()
-                        .then(function (plans) { return _this.plans = plans.slice(2, 3); });
+                        .then(function (plans) { return _this.plans = plans.slice(1, 4); });
                 };
                 DashboardComponent.prototype.goToDetail = function (plan) {
                     var link = ['PlanDetail', { id: plan.id }];
