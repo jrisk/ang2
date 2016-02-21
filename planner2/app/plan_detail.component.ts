@@ -21,13 +21,6 @@ export class PlanDetailComponent implements OnInit {
 		this._planService.getPlan(id)
 		.then(plan => this.plan = plan)
 	}
-
-	/*getPlans(id: number) {
-		return Promise.resolve(PLANS).then(
-			plans => plans.filter(plan => plan.id === id)[0]
-		);
-	}*/
-
 	goBack() {
 		window.history.back();
 	}

@@ -33,11 +33,6 @@ System.register(['angular2/core', 'angular2/router', './plan.service'], function
                     this._planService.getPlan(id)
                         .then(function (plan) { return _this.plan = plan; });
                 };
-                /*getPlans(id: number) {
-                    return Promise.resolve(PLANS).then(
-                        plans => plans.filter(plan => plan.id === id)[0]
-                    );
-                }*/
                 PlanDetailComponent.prototype.goBack = function () {
                     window.history.back();
                 };
