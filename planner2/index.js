@@ -66,13 +66,7 @@ getter.on('error', function(err) {
 
 app.listen(3000);
 
-app.get('/', (req,res) => {
+app.get(['/', '/dashboard', '/detail*', '/plans'], (req,res) => {
 	console.log('app works on port 3000');
 	res.sendFile(path.join(__dirname + '/public/planner.html'));
 });
-
-
-
-
-
-

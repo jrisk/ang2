@@ -1,6 +1,5 @@
 import {Component, OnInit} from 'angular2/core'
 import {Plan} from './plan'
-//import {PLANS} from './mock_plans' //shouldnt have to importthis if its avaialbel in planservice??
 import {RouteParams} from 'angular2/router'
 import {PlanService} from './plan.service'
 
@@ -23,5 +22,9 @@ export class PlanDetailComponent implements OnInit {
 	}
 	goBack() {
 		window.history.back();
+	}
+
+	goPrint() {
+		window.print();
 	}
 }

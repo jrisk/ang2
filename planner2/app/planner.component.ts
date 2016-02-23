@@ -23,7 +23,10 @@ interface Week {
 	<span>{{plan.date}}</span><b>{{plan.start}}</b>
 	</li>
 	</ul>
-	<plan-detail [plan]="pressedPlan"></plan-detail>
+	<div *ngIf="pressedPlan">
+		<h2> {{pressedPlan.title || uppercase}} is the current plan </h2>
+		<button (click)="goToDetail()">Go to Full Plan</button>
+		</div>
 	`,
 	styles: [`
 	h1 {
@@ -59,5 +62,10 @@ export class PlannerComponent implements OnInit { //dont need implements OnInit 
 
 	onPress(plan: Plan) {
 		this.pressedPlan = plan;
+	}
+
+	goToDetail() {
+		let link = ['PlanDetail', { id: this.pressedPlan.id }];
+		this._router.navigate(link);
 	}
 }

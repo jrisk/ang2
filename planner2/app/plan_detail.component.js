@@ -36,6 +36,9 @@ System.register(['angular2/core', 'angular2/router', './plan.service'], function
                 PlanDetailComponent.prototype.goBack = function () {
                     window.history.back();
                 };
+                PlanDetailComponent.prototype.goPrint = function () {
+                    window.print();
+                };
                 PlanDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'plan-detail',
