@@ -1,0 +1,11 @@
+h1 {
+	font-family: Arial, Times New Roman;
+	box-shadow: 0.2em 0.2em 0.2em #999;
+}
+h2 {
+	font-color: blue;
+}
+
+#lister {
+	font-color: red;
+}
