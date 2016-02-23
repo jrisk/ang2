@@ -40,7 +40,7 @@ System.register(['angular2/core', './plan.service', 'angular2/router'], function
                 DashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'dashboard',
-                        templateUrl: '../public/dashboard.component.html'
+                        templateUrl: 'app/public/views/dashboard.component.html'
                     }), 
                     __metadata('design:paramtypes', [plan_service_1.PlanService, router_1.Router])
                 ], DashboardComponent);

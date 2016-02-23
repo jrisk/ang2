@@ -48,8 +48,8 @@ System.register(['angular2/core', './plan.service', './plan_detail.component', '
                 PlannerComponent = __decorate([
                     core_1.Component({
                         selector: 'plan-dash',
-                        templateUrl: '../public/planner.component.html',
-                        styleUrls: ['../public/css/planner.component.css'],
+                        templateUrl: 'app/public/views/planner.component.html',
+                        styleUrls: ['app/public/css/planner.component.css'],
                         directives: [plan_detail_component_1.PlanDetailComponent],
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, plan_service_1.PlanService])

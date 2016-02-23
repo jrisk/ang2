@@ -16,8 +16,8 @@ interface Week {
 
 @Component({
 	selector: 'plan-dash',
-	templateUrl: '../public/planner.component.html',
-	styleUrls: ['../public/css/planner.component.css'],
+	templateUrl: 'app/public/views/planner.component.html',
+	styleUrls: ['app/public/css/planner.component.css'],
 	directives: [PlanDetailComponent],
 })
 

@@ -68,5 +68,5 @@ app.listen(3000);
 
 app.get(['/', '/dashboard', '/detail*', '/plans'], (req,res) => {
 	console.log('app works on port 3000');
-	res.sendFile(path.join(__dirname + '/public/planner.html'));
+	res.sendFile(path.join(__dirname + '/app/public/views/planner.html'));
 });

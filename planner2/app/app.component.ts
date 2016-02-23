@@ -7,8 +7,8 @@ import {PlanDetailComponent} from './plan_detail.component'
 
 @Component({
 	selector: 'planner',
-	templateUrl: '../public/app.component.html',
-	styleUrls: ['../public/css/app.component.css'],
+	templateUrl: 'app/public/views/app.component.html',
+	styleUrls: ['app/public/css/app.component.css'],
 	directives: [ROUTER_DIRECTIVES],
 	providers: [ROUTER_PROVIDERS, PlanService]
 })

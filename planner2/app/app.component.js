@@ -39,8 +39,8 @@ System.register(['angular2/core', './plan.service', './planner.component', 'angu
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'planner',
-                        templateUrl: '../public/app.component.html',
-                        styleUrls: ['../public/css/app.component.css'],
+                        templateUrl: 'app/public/views/app.component.html',
+                        styleUrls: ['app/public/css/app.component.css'],
                         directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [router_1.ROUTER_PROVIDERS, plan_service_1.PlanService]
                     }),
