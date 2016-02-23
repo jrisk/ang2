@@ -39,8 +39,8 @@ System.register(['angular2/core', './plan.service', './planner.component', 'angu
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'planner',
-                        template: "<h1>{{title}}</h1><hr>\n\t<h2>{{message}}</h2>\n\t<nav>\n\t<a [routerLink]=\"['Dashboard']\">Dashboard</a>\n\t<a [routerLink]=\"['Plans']\">Plans</a>\n\t</nav>\n\t<router-outlet></router-outlet>\n\t",
-                        styles: ["\n\th1 {\n\t\tfont-family: Ariel, Times New Roman;\n\t\tbox-shadow: 0.2em 0.2em 0.2em #999;\n\t}\n\th2 {\n\t\tcolor: #888;\n\t}\n\t"],
+                        templateUrl: '../public/app.component.html',
+                        styleUrls: ['../public/css/app.component.css'],
                         directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [router_1.ROUTER_PROVIDERS, plan_service_1.PlanService]
                     }),

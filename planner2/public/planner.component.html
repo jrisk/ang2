@@ -3,7 +3,9 @@
 <h2>{{message}}</h2>
 <ul class="plans">
 	<li id="lister" *ngFor="#plan of plans" (click)="onPress(plan)">
-		<span>{{plan.date}}</span><b>{{plan.start}}</b>
+		<label>Date</label>{{plan.date}}
+		<label>Start Time</label>{{plan.start}}
+		<label>End Time</label>{{plan.end}}
 	</li>
 </ul>
 <div *ngIf="pressedPlan">

@@ -16,30 +16,8 @@ interface Week {
 
 @Component({
 	selector: 'plan-dash',
-	template: `<h1>{{title}}</h1><hr>
-	<h2>{{message}}</h2>
-	<ul class="plans">
-	<li id="lister" *ngFor="#plan of plans" (click)="onPress(plan)">
-	<span>{{plan.date}}</span><b>{{plan.start}}</b>
-	</li>
-	</ul>
-	<div *ngIf="pressedPlan">
-		<h2> {{pressedPlan.title || uppercase}} is the current plan </h2>
-		<button (click)="goToDetail()">Go to Full Plan</button>
-		</div>
-	`,
-	styles: [`
-	h1 {
-		font-family: Ariel, Times New Roman;
-		box-shadow: 0.2em 0.2em 0.2em #999;
-	}
-	h2 {
-		font-color: blue;
-	}
-	lister {
-		font-color: red;
-	}
-	`],
+	templateUrl: '../public/planner.component.html',
+	styleUrls: ['../public/css/planner.component.css'],
 	directives: [PlanDetailComponent],
 })
 

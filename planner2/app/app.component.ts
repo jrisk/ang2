@@ -7,23 +7,8 @@ import {PlanDetailComponent} from './plan_detail.component'
 
 @Component({
 	selector: 'planner',
-	template: `<h1>{{title}}</h1><hr>
-	<h2>{{message}}</h2>
-	<nav>
-	<a [routerLink]="['Dashboard']">Dashboard</a>
-	<a [routerLink]="['Plans']">Plans</a>
-	</nav>
-	<router-outlet></router-outlet>
-	`,
-	styles: [`
-	h1 {
-		font-family: Ariel, Times New Roman;
-		box-shadow: 0.2em 0.2em 0.2em #999;
-	}
-	h2 {
-		color: #888;
-	}
-	`],
+	templateUrl: '../public/app.component.html',
+	styleUrls: ['../public/css/app.component.css'],
 	directives: [ROUTER_DIRECTIVES],
 	providers: [ROUTER_PROVIDERS, PlanService]
 })
