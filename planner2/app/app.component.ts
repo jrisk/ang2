@@ -4,6 +4,7 @@ import {PlannerComponent} from './planner.component'
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from 'angular2/router'
 import {DashboardComponent} from './dashboard.component'
 import {PlanDetailComponent} from './plan_detail.component'
+import {LoginComponent} from './login.component'
 
 @Component({
 	selector: 'planner',
@@ -30,6 +31,11 @@ import {PlanDetailComponent} from './plan_detail.component'
 		path: '/plans',
 		name: 'Plans',
 		component: PlannerComponent
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: LoginComponent
 	}
 ])
 

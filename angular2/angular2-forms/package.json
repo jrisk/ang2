@@ -1,0 +1,15 @@
+{
+  "name": "angular2-forms",
+  "version": "1.0.0",
+  "description": "angular2 form tut",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "keywords": [
+    "angular2",
+    "forms"
+  ],
+  "author": "joe risk",
+  "license": "ISC"
+}

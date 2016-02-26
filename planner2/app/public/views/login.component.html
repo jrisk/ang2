@@ -1,0 +1,9 @@
+<h1>{{title}}</h1>
+<hr>
+<h2>Login</h2>
+<br>
+<b><label>name</label></b>
+<input #myname name="name" value="1" id="name" placeholder="name">
+<b><label>Password</label></b>
+<input #mypassword name="password" value="2" id="password" placeholder="password">
+<button type="button" (click)="validate(myname.value, mypassword.value)">Submit</button>
