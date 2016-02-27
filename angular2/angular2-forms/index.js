@@ -4,6 +4,8 @@ var path = require('path');
 
 var app = express();
 
+app.use(express.static(__dirname + '/'));
+
 http.createServer( (req,res) => {
 	res.writeHead(200, {'Content-Type': 'text/plain'});
 

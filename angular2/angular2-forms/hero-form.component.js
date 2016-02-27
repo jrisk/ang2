@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './hero'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,26 +8,44 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var HeroForm;
+    var core_1, hero_1;
+    var HeroFormComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (hero_1_1) {
+                hero_1 = hero_1_1;
             }],
         execute: function() {
-            HeroForm = (function () {
-                function HeroForm() {
+            HeroFormComponent = (function () {
+                function HeroFormComponent() {
+                    this.powers = ["Fire", "Water", "Earth", "Can become invisible when no one is around"];
+                    this.model = new hero_1.Hero(4567, "Dr. Invis", this.powers[3], "Alter E. Go");
+                    this.submitted = false;
                 }
-                HeroForm = __decorate([
+                HeroFormComponent.prototype.onSubmit = function () {
+                    this.submitted = true;
+                };
+                Object.defineProperty(HeroFormComponent.prototype, "diagnostic", {
+                    //TODO: remove this one done
+                    get: function () {
+                        return JSON.stringify(this.model);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                HeroFormComponent = __decorate([
                     core_1.Component({
-                        templateUrl: ''
+                        selector: '<hero-form>',
+                        templateUrl: 'hero-form.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
-                ], HeroForm);
-                return HeroForm;
+                ], HeroFormComponent);
+                return HeroFormComponent;
             })();
-            exports_1("HeroForm", HeroForm);
+            exports_1("HeroFormComponent", HeroFormComponent);
         }
     }
 });
