@@ -10,4 +10,4 @@ export class Hero {
 
 let myHero = new Hero(1234, 'SuperDude', 'super strength', 'Kevin');
 
-console.log(myHero.name + myHero.power + myHero.power + myHero.AlterEgo);
+console.log(myHero.name + myHero.power + myHero.id + myHero.AlterEgo);
