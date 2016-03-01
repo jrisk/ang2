@@ -1,20 +1,15 @@
 {
 	"compilerOptions": {
-		"target": "ES5",
+		"target": "ES6",
 		"module": "system",
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"noImplicitAny": false,
 		"removeComments": false,
-		"preserveConstEnums": true,
 		"sourceMap": true
 	},
 	"exclude": [
-		"node_modules",
-		"typings/main",
-		"typings/main.d.ts",
-		"typings/browser/",
-		"typings/browser.d.ts"
+		"node_modules"
 	]
 }

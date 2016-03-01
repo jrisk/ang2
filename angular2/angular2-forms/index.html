@@ -1,5 +1,6 @@
 <html>
 <head>
+	<base href="/">
 	<title>Angular 2 Forms</title>
 	<script src="node_modules/es6-shim/es6-shim.min.js"></script>
 <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
@@ -18,7 +19,7 @@ System.config({
 		}
 	}
 });
-System.import('main.js')
+System.import('./main.js')
 	.then(null, console.error.bind(console));
 </script>
 

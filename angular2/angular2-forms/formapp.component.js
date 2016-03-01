@@ -19,20 +19,17 @@ System.register(['angular2/core', './hero-form.component'], function(exports_1) 
                 hero_form_component_1 = hero_form_component_1_1;
             }],
         execute: function() {
-            FormAppComponent = (function () {
-                function FormAppComponent() {
-                }
-                FormAppComponent = __decorate([
-                    core_1.Component({
-                        selector: '<form-app>',
-                        template: '<hero-form></hero-form>',
-                        directives: [hero_form_component_1.HeroFormComponent]
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], FormAppComponent);
-                return FormAppComponent;
-            })();
-            exports_1("FormAppComponent", FormAppComponent);
+            let FormAppComponent = class {
+            };
+            FormAppComponent = __decorate([
+                core_1.Component({
+                    selector: '<form-app>',
+                    template: '<hero-form></hero-form>',
+                    directives: [hero_form_component_1.HeroFormComponent]
+                }), 
+                __metadata('design:paramtypes', [])
+            ], FormAppComponent);
+            FormAppComponent = FormAppComponent;
         }
     }
 });

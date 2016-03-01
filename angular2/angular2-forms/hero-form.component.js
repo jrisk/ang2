@@ -19,33 +19,28 @@ System.register(['angular2/core', './hero'], function(exports_1) {
                 hero_1 = hero_1_1;
             }],
         execute: function() {
-            HeroFormComponent = (function () {
-                function HeroFormComponent() {
+            let HeroFormComponent = class {
+                constructor() {
                     this.powers = ["Fire", "Water", "Earth", "Can become invisible when no one is around"];
                     this.model = new hero_1.Hero(4567, "Dr. Invis", this.powers[3], "Alter E. Go");
                     this.submitted = false;
                 }
-                HeroFormComponent.prototype.onSubmit = function () {
+                onSubmit() {
                     this.submitted = true;
-                };
-                Object.defineProperty(HeroFormComponent.prototype, "diagnostic", {
-                    //TODO: remove this one done
-                    get: function () {
-                        return JSON.stringify(this.model);
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                HeroFormComponent = __decorate([
-                    core_1.Component({
-                        selector: '<hero-form>',
-                        templateUrl: 'hero-form.component.html'
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], HeroFormComponent);
-                return HeroFormComponent;
-            })();
-            exports_1("HeroFormComponent", HeroFormComponent);
+                }
+                //TODO: remove this one done
+                get diagnostic() {
+                    return JSON.stringify(this.model);
+                }
+            };
+            HeroFormComponent = __decorate([
+                core_1.Component({
+                    selector: '<hero-form>',
+                    templateUrl: 'hero-form.component.html'
+                }), 
+                __metadata('design:paramtypes', [])
+            ], HeroFormComponent);
+            HeroFormComponent = HeroFormComponent;
         }
     }
 });
