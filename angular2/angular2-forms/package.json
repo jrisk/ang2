@@ -1,29 +1,27 @@
 {
   "name": "angular2-forms",
   "version": "1.0.0",
-  "description": "angular2 form tut",
-  "main": "index.js",
   "scripts": {
-    "test": "start"
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
   },
-  "keywords": [
-    "angular2",
-    "forms"
-  ],
-  "author": "joe risk",
   "license": "ISC",
   "dependencies": {
-    "angular2": "^2.0.0-beta.7",
+    "angular2": "2.0.0-beta.3",
     "bootstrap": "^3.3.6",
-    "es6-promise": "^3.1.2",
-    "es6-shim": "^0.34.4",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
     "express": "^4.13.4",
-    "nodemon": "^1.9.1",
-    "reflect-metadata": "^0.1.3",
-    "rxjs": "^5.0.0-beta.2",
-    "systemjs": "^0.19.23",
-    "typescript": "^1.7.5",
-    "zone.js": "^0.5.15"
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "systemjs": "0.19.6",
+    "zone.js": "0.5.11"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "^1.0.0",
+    "lite-server": "^2.0.1",
+    "typescript": "^1.7.5"
+  }
 }

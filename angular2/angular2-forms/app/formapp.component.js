@@ -1,4 +1,6 @@
-System.register(['angular2/core', './hero-form.component'], function(exports_1) {
+System.register(['angular2/core', './hero-form.component'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,17 +21,20 @@ System.register(['angular2/core', './hero-form.component'], function(exports_1) 
                 hero_form_component_1 = hero_form_component_1_1;
             }],
         execute: function() {
-            let FormAppComponent = class {
-            };
-            FormAppComponent = __decorate([
-                core_1.Component({
-                    selector: '<form-app>',
-                    template: '<hero-form></hero-form>',
-                    directives: [hero_form_component_1.HeroFormComponent]
-                }), 
-                __metadata('design:paramtypes', [])
-            ], FormAppComponent);
-            FormAppComponent = FormAppComponent;
+            FormAppComponent = (function () {
+                function FormAppComponent() {
+                }
+                FormAppComponent = __decorate([
+                    core_1.Component({
+                        selector: '<form-app>',
+                        template: '<hero-form></hero-form>',
+                        directives: [hero_form_component_1.HeroFormComponent]
+                    }), 
+                    __metadata('design:paramtypes', [])
+                ], FormAppComponent);
+                return FormAppComponent;
+            }());
+            exports_1("FormAppComponent", FormAppComponent);
         }
     }
 });

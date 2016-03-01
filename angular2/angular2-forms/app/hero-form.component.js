@@ -1,4 +1,6 @@
-System.register(['angular2/core', './hero'], function(exports_1) {
+System.register(['angular2/core', './hero'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,28 +21,33 @@ System.register(['angular2/core', './hero'], function(exports_1) {
                 hero_1 = hero_1_1;
             }],
         execute: function() {
-            let HeroFormComponent = class {
-                constructor() {
+            HeroFormComponent = (function () {
+                function HeroFormComponent() {
                     this.powers = ["Fire", "Water", "Earth", "Can become invisible when no one is around"];
                     this.model = new hero_1.Hero(4567, "Dr. Invis", this.powers[3], "Alter E. Go");
                     this.submitted = false;
                 }
-                onSubmit() {
+                HeroFormComponent.prototype.onSubmit = function () {
                     this.submitted = true;
-                }
-                //TODO: remove this one done
-                get diagnostic() {
-                    return JSON.stringify(this.model);
-                }
-            };
-            HeroFormComponent = __decorate([
-                core_1.Component({
-                    selector: '<hero-form>',
-                    templateUrl: 'hero-form.component.html'
-                }), 
-                __metadata('design:paramtypes', [])
-            ], HeroFormComponent);
-            HeroFormComponent = HeroFormComponent;
+                };
+                Object.defineProperty(HeroFormComponent.prototype, "diagnostic", {
+                    //TODO: remove this one done
+                    get: function () {
+                        return JSON.stringify(this.model);
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                HeroFormComponent = __decorate([
+                    core_1.Component({
+                        selector: '<hero-form>',
+                        templateUrl: '/hero-form.component.html'
+                    }), 
+                    __metadata('design:paramtypes', [])
+                ], HeroFormComponent);
+                return HeroFormComponent;
+            }());
+            exports_1("HeroFormComponent", HeroFormComponent);
         }
     }
 });
