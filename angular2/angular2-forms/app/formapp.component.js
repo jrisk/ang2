@@ -26,8 +26,9 @@ System.register(['angular2/core', './hero-form.component'], function(exports_1, 
                 }
                 FormAppComponent = __decorate([
                     core_1.Component({
-                        selector: '<form-app>',
-                        template: '<hero-form></hero-form>',
+                        selector: 'form-app',
+                        //leads to a very insidious error
+                        template: "<hero-form></hero-form>",
                         directives: [hero_form_component_1.HeroFormComponent]
                     }), 
                     __metadata('design:paramtypes', [])

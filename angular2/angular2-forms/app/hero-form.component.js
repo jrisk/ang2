@@ -1,4 +1,4 @@
-System.register(['angular2/core', './hero'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,28 +10,26 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, hero_1;
+    var core_1;
     var HeroFormComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (hero_1_1) {
-                hero_1 = hero_1_1;
             }],
         execute: function() {
             HeroFormComponent = (function () {
                 function HeroFormComponent() {
                     this.powers = ["Fire", "Water", "Earth", "Can become invisible when no one is around"];
-                    this.model = new hero_1.Hero(4567, "Dr. Invis", this.powers[3], "Alter E. Go");
+                    this.model = [
+                        { id: 1234, name: "whatever", power: "something", AlterEgo: "forgot" }
+                    ];
                     this.submitted = false;
                 }
                 HeroFormComponent.prototype.onSubmit = function () {
                     this.submitted = true;
                 };
                 Object.defineProperty(HeroFormComponent.prototype, "diagnostic", {
-                    //TODO: remove this one done
                     get: function () {
                         return JSON.stringify(this.model);
                     },
@@ -40,8 +38,8 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
                 });
                 HeroFormComponent = __decorate([
                     core_1.Component({
-                        selector: '<hero-form>',
-                        templateUrl: '/hero-form.component.html'
+                        selector: 'hero-form',
+                        templateUrl: './app/hero_form.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HeroFormComponent);

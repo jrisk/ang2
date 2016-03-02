@@ -1,19 +1,17 @@
+{{diagnostic}}
 <div class="container">
     <h1>Hero Form</h1>
     <form>
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" [(ngModel)]="model.name" required>
-        <!-- TODO: Remove this "model.name" -->
+        <input type="text" class="form-control" [(ngModel)]="model.name">
       </div>
-      <!-- Power form group ngfor -->
       <div class="form-group">
-      	<label for="power">Power</label>
-      	<select class="form-control" required>
-      		<option *ngFor="#pow of powers" [value]="pow">{{pow}}</option>
-      	</select>
+        <label for="power">Power</label>
+        <select class="form-control">
+          <option *ngFor="#pow of powers" [value]="pow">{{pow}}</option>
+        </select>
       </div>
-
       <div class="form-group">
         <label for="alterEgo">Alter Ego</label>
         <input type="text" class="form-control">

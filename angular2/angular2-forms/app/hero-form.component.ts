@@ -3,14 +3,16 @@ import {NgForm} from 'angular2/common'
 import {Hero} from './hero'
 
 @Component({
-	selector: '<hero-form>',
-	templateUrl: '/hero-form.component.html'
+	selector: 'hero-form',
+	templateUrl: './app/hero_form.component.html'
 })
 
 export class HeroFormComponent {
 	powers = ["Fire", "Water", "Earth", "Can become invisible when no one is around"];
 
-	model = new Hero(4567, "Dr. Invis", this.powers[3], "Alter E. Go");
+	model: Hero[] = [
+	{ id: 1234, name: "whatever", power: "something", AlterEgo: "forgot" }
+	];
 
 	submitted = false;
 
@@ -18,11 +20,7 @@ export class HeroFormComponent {
 		this.submitted = true;
 	}
 
-	//TODO: remove this one done
-
 	get diagnostic() {
 		return JSON.stringify(this.model);
 	}
-
-
 }
