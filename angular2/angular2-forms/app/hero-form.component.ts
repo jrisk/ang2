@@ -22,7 +22,7 @@ export class HeroFormComponent {
 	}
 
 	newHero() {
-		this.model = new Hero(1337, '', '');
+		this.model = new Hero(1337, " ", " ");
 		//workaround for proper form reset feature, this is a hack
 		this.active = false;
 		setTimeout(()=> this.active = true, 0)

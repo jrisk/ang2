@@ -34,7 +34,7 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
                 };
                 HeroFormComponent.prototype.newHero = function () {
                     var _this = this;
-                    this.model = new hero_1.Hero(1337, '', '');
+                    this.model = new hero_1.Hero(1337, " ", " ");
                     //workaround for proper form reset feature, this is a hack
                     this.active = false;
                     setTimeout(function () { return _this.active = true; }, 0);

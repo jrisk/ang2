@@ -15,10 +15,15 @@
         <br>#spy local var: {{spy.className}}
       </div>
       <div class="form-group">
-        <label for="power">Power</label>
-        <select class="form-control" [(ngModel)]="model.power" required>
-          <option *ngFor="#pow of powers" [value]="pow">{{pow}}</option>
+        <label for="power">Hero Power</label>
+        <select class="form-control" required
+          [(ngModel)]="model.power"
+            ngControl="power" #power="ngForm" >
+          <option *ngFor="#p of powers" [value]="p">{{p}}</option>
         </select>
+        <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+          Power is required
+        </div>
       </div>
       <div class="form-group">
         <label for="alterEgo">Alter Ego</label>
