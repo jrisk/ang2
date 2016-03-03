@@ -8,16 +8,18 @@ import {Hero} from './hero'
 })
 
 export class HeroFormComponent {
-	powers = ["Fire", "Water", "Earth", "Can become invisible when no one is around"];
+	powers = ["Fire", "Water", "Earth", "invisibility", "Can become invisible when no one is around"];
 
-	model: Hero[] = [
-	{ id: 1234, name: "whatever", power: "something", AlterEgo: "forgot" }
-	];
+	model = new Hero(9876, "The Invisible Man", "invisibility", "kenny chesney");
 
 	submitted = false;
 
 	onSubmit() {
 		this.submitted = true;
+	}
+
+	newHero() {
+		this.model = new Hero(1337, '', '');
 	}
 
 	get diagnostic() {
