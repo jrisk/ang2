@@ -25,7 +25,7 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
                 function HeroFormComponent() {
                     //powers doesnt appear on new hero button, must be reset manually diffrent in newHero()
                     this.powers = ["Fire", "Water", "Earth", "invisibility", "Can become invisible when no one is around"];
-                    this.model = new hero_1.Hero(9876, "The Invisible Man", "invisibility", "kenny chesney");
+                    this.model = new hero_1.Hero(9876, "The Invisible Man", this.powers[0], "kenny chesney");
                     this.submitted = false;
                     this.active = true; // workaround flag
                 }
@@ -34,7 +34,7 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
                 };
                 HeroFormComponent.prototype.newHero = function () {
                     var _this = this;
-                    this.model = new hero_1.Hero(1337, " ", " ");
+                    this.model = new hero_1.Hero(1337, "", "");
                     //workaround for proper form reset feature, this is a hack
                     this.active = false;
                     setTimeout(function () { return _this.active = true; }, 0);
