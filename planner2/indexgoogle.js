@@ -125,6 +125,7 @@ function listEvents(auth) {
         var start = event.start.dateTime || event.start.date;
         console.log('%s - %s', start, event.summary);
       }
+      //return events;
     }
   });
 }
