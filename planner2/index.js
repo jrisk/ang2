@@ -58,13 +58,22 @@ getter.on('error', function(err) {
 	console.error(err);
 });
 
+var buf = new Buffer(2048);
+
 //open google api server call on response callback)
-	fs.open('indexgoogle.js', 'rs', function (err, fd) {
+	fs.open('indexgoogle.js', 'rs+', function (err, fd) {
 		if (err) {
 			console.error(err);
 		}
 		else {
-			console.log(fd.toString());
+			fs.read(fd, buf, 0, buf.length, 0, function(err, bytes) {
+				if (err) {
+					console.error(err);
+				}
+				else {
+				console.log(fd + "buffer: " + buf);
+				}
+			})
 		}
 	});
 
