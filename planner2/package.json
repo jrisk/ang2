@@ -28,7 +28,8 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
-    "start": "npm run tsc:w"
+    "start": "npm run tsc:w",
+    "serve": "nodemon index.js && nodemon indexgoogle.js"
   },
   "keywords": [
     "node",

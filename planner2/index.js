@@ -48,18 +48,25 @@ var getter = https.get(options, function(res) {
 	console.log('status code is: ' + res.statusCode);
 	console.log('headers are: ' + res.headers);
 
-res.on('data', function(d) {
-	console.log('get the returned data\n');
-	process.stdout.write('got em');
-	console.log('call complete');
-});
-
-});
+	res.on('data', function(d) {
+		console.log('data response call complete');
+		});
+	});
 
 getter.end();
 getter.on('error', function(err) {
 	console.error(err);
 });
+
+//open google api server call on response callback)
+	fs.open('indexgoogle.js', 'rs', function (err, fd) {
+		if (err) {
+			console.error(err);
+		}
+		else {
+			console.log(fd.toString());
+		}
+	});
 
 /************** initial google calendar test done ***************/
 
