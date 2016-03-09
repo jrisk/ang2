@@ -116,20 +116,25 @@ function listEvents(auth) {
       return;
     }
     var events = response.items;
-    if (events.length == 0) {
+    if (events.length == 0) 
+    {
       console.log('No upcoming events found.');
-    } else {
+    } 
+    else 
+    {
       console.log('Upcoming 10 events:');
-      for (var i = 0; i < events.length; i++) {
+      for (var i = 0; i < events.length; i++) 
+      {
         var event = events[i];
         var start = event.start.dateTime || event.start.date;
         console.log('%s - %s', start, event.summary);
-        //write to file to inject services json object
-        fs.writeFile('events.json', event.start.date + event.summary, function(err) {
-          if (err)
-            throw(err);
+        //write/append to file events.json
+        fs.appendFile('events.json', 'date: ' + event.start.dateTime
+          + '\ntask: ' + event.summary + '\n', function(err, fd) {
+          if (err) throw err;
         });
+        }
       }
     }
-  });
+    );
 }
