@@ -124,6 +124,11 @@ function listEvents(auth) {
         var event = events[i];
         var start = event.start.dateTime || event.start.date;
         console.log('%s - %s', start, event.summary);
+        //write to file to inject services json object
+        fs.writeFile('events.json', event.start.date + event.summary, function(err) {
+          if (err)
+            throw(err);
+        });
       }
     }
   });
