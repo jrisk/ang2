@@ -128,10 +128,16 @@ function listEvents(auth) {
         var event = events[i];
         var start = event.start.dateTime || event.start.date;
         console.log('%s - %s', start, event.summary);
+        var jsonObj = {
+          'date' : event.start.dateTime,
+          'task' : event.summary
+          }
+        //var eventJson = JSON.parse(jsonObj);
         //write/append to file events.json
-        fs.appendFile('events.json', 'date: ' + event.start.dateTime
-          + '\ntask: ' + event.summary + '\n', function(err, fd) {
+        //if ()
+        fs.appendFile('events.json', JSON.stringify(jsonObj) + ',', function(err, fd) {
           if (err) throw err;
+          process.stdout.write('test');
         });
         }
       }

@@ -1,5 +1,6 @@
 var express = require('express');
 var https = require('https');
+var http = require('http');
 var pg = require('pg');
 var path = require('path');
 var fs = require('fs');
@@ -10,9 +11,11 @@ var app = express();
 app.use(express.static(__dirname + '/'));
 
 const HOST = '127.0.0.1';
-const PORT = 1337;
+const PORT = 8080;
 
-var server = https.createServer((req,res) => {
+//http server example
+
+http.createServer((req,res) => {
 	res.writeHead(200, {'Content-Type': 'text/plain'});
 	var url = "request url is: " + req.url + "\n";
 	var reqStuff = "request method is: " + req.method + "\n";
@@ -20,6 +23,7 @@ var server = https.createServer((req,res) => {
 
 	if (req.url == '/') {
 		res.end('Welcome to the main server page');
+		process.stdout.write('hello process in req.url');
 	}
 	else {
 	res.end(url + reqStuff + reqHeaders);
@@ -27,6 +31,19 @@ var server = https.createServer((req,res) => {
 }).listen(PORT, HOST, () => {
 	console.log(`Server listening on http://${HOST}:${PORT}`);
 });
+
+//HTTPS example. SSL certificate NECESSARY
+
+var sslOptions = {
+	key: fs.readFileSync('key.pem'),
+	cert: fs.readFileSync('cert.pem')
+}
+
+https.createServer(sslOptions, (req,res) => {
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('https server at ' + req.url + 'head' + req.headers);
+	process.stdout.write('https hello');
+}).listen(1337);
 
 /************** google calendar API call *********************/
 
