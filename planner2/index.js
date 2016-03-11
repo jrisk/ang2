@@ -98,3 +98,7 @@ app.get(['/', '/dashboard', '/detail*', '/plans', '/login', '/test'], (req,res) 
 	console.log('app works on port 3000');
 	res.sendFile(path.join(__dirname + '/app/public/views/planner.html'));
 });
+
+/*app.get('mocktest.json', (req,res) => {
+	res.sendFile(path.join(__dirname + '/app/mocktest.json'))
+});*/

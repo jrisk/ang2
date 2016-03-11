@@ -1,8 +1,9 @@
-<div *ngIf="newplan">
+<div>
 	<label>Plans</label>
+	<p>Hello there</p>
+	<div (click)="_newPlanService.getNewPlans()">Click Test</div>
 	<br>
 	<div *ngFor="#newplan of newplans">
 	<b (click)="newDetails(newplan)">{{newplan.task}}</b>
-	<p>Hello there</p>
 	</div>
 </div>

@@ -15,9 +15,15 @@
 <!-- Configure System.js -->
 <script>
 System.config({
+	map: {
+		'rxjs': 'node_modules/rxjs'
+	},
 	packages: {
 		app: {
 			format: 'register',
+			defaultExtension: 'js'
+		},
+		'rxjs': {
 			defaultExtension: 'js'
 		}
 	}

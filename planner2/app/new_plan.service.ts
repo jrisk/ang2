@@ -11,6 +11,13 @@ export class NewPlanService {
 	}
 
 	getNewPlans() {
-		console.log(this.http.get('../event.json'));
+		return this.http.get('mocktest.json').map(res => res.json()).forEach(
+			function(i) {
+				console.log(i);
+			},
+			function onError(err) {
+				console.log(err);
+			}
+		)
 	}
 }
