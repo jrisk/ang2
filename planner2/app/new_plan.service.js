@@ -25,8 +25,7 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1) {
                     this.http = http;
                 }
                 NewPlanService.prototype.getNewPlans = function () {
-                    var promiser = Promise.resolve(this.http.get('../event.json'));
-                    console.log(promiser);
+                    console.log(this.http.get('../event.json'));
                 };
                 NewPlanService = __decorate([
                     core_1.Injectable(), 

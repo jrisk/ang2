@@ -11,7 +11,6 @@ export class NewPlanService {
 	}
 
 	getNewPlans() {
-		var promiser = Promise.resolve(this.http.get('../event.json'));
-		console.log(promiser);
+		console.log(this.http.get('../event.json'));
 	}
 }

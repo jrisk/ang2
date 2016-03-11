@@ -8,7 +8,7 @@ var assert = require('assert');
 
 var child = require('child_process'), ls;
 
-ls = child.exec('node indexgoogle', function(err, stdout, stderr) {
+/*ls = child.exec('node indexgoogle', function(err, stdout, stderr) {
 	if (err) {
 		console.log(error.stack);
 		console.log('Error Code: ' + error.code);
@@ -20,7 +20,7 @@ ls = child.exec('node indexgoogle', function(err, stdout, stderr) {
 
 ls.on('exit', function(code) {
 	console.log('Child process exited with function code: ' + code);
-});
+});*/
 
 var app = express();
 
@@ -77,7 +77,7 @@ var options = {
 console.info('options object made without port');
 console.info('preparing GET call to calendar API');
 
-var getter = https.get(options, function(res) {
+/*var getter = https.get(options, function(res) {
 	console.log('status code is: ' + res.statusCode);
 	console.log('headers are: ' + res.headers);
 
@@ -89,7 +89,7 @@ var getter = https.get(options, function(res) {
 getter.end();
 getter.on('error', function(err) {
 	console.error(err);
-});
+});*/
 
 
 app.listen(3000);
