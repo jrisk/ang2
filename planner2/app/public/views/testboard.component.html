@@ -1,0 +1,8 @@
+<div *ngIf="newplan">
+	<label>Plans</label>
+	<br>
+	<div *ngFor="#newplan of newplans">
+	<b (click)="newDetails(newplan)">{{newplan.task}}</b>
+	<p>Hello there</p>
+	</div>
+</div>

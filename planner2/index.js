@@ -6,6 +6,22 @@ var path = require('path');
 var fs = require('fs');
 var assert = require('assert');
 
+var child = require('child_process'), ls;
+
+ls = child.exec('node indexgoogle', function(err, stdout, stderr) {
+	if (err) {
+		console.log(error.stack);
+		console.log('Error Code: ' + error.code);
+		console.log('Signal recieved: ' + error.signal);
+	}
+	console.log('Child process Standard Output: ' + stdout);
+	console.log('Child process Standard Error: ' + stderr);
+});
+
+ls.on('exit', function(code) {
+	console.log('Child process exited with function code: ' + code);
+});
+
 var app = express();
 
 app.use(express.static(__dirname + '/'));
@@ -78,7 +94,7 @@ getter.on('error', function(err) {
 
 app.listen(3000);
 
-app.get(['/', '/dashboard', '/detail*', '/plans', '/login'], (req,res) => {
+app.get(['/', '/dashboard', '/detail*', '/plans', '/login', '/test'], (req,res) => {
 	console.log('app works on port 3000');
 	res.sendFile(path.join(__dirname + '/app/public/views/planner.html'));
 });

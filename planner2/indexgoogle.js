@@ -129,6 +129,7 @@ function listEvents(auth) {
         var start = event.start.dateTime || event.start.date;
         console.log('%s - %s', start, event.summary);
         var jsonObj = {
+          'id': i,
           'date' : event.start.dateTime,
           'task' : event.summary
           }
@@ -140,6 +141,23 @@ function listEvents(auth) {
           process.stdout.write('test');
         });
         }
+        //erase the comma from after the last object? best way?
+        fs.readFile('events.json', 'utf-8', function(err, data) {
+          if (err)
+            console.error(err);
+          else {
+            var testy = data.toString();
+            var tested = testy.slice(0, testy.length-1);
+            fs.appendFile('event.json', tested, function(err, fd) {
+              if (err) {
+                console.error(err);
+              }
+              else {
+                process.stdout.write('wrote a new json object to event.json');
+              }
+            });
+          }
+        });
       }
     }
     );

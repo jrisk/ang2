@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
 
 	ngOnInit() {
 		this._planService.getPlans()
-			.then(plans => this.plans = plans.slice(1, 4));
+			.then(plans => this.plans = plans.slice(1, 10));
 	}
 
 	goToDetail(plan: Plan) {
