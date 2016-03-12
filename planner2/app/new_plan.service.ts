@@ -13,6 +13,6 @@ export class NewPlanService {
 	}
 
 	getNewPlans() {
-		return Promise.resolve(this.http.get('mocktest.json').map(res => res.json()));
+		return this.http.get('event.json').map(res => res.json());
 	}
 }

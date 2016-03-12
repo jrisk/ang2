@@ -148,7 +148,8 @@ function listEvents(auth) {
           else {
             var testy = data.toString();
             var tested = testy.slice(0, testy.length-1);
-            fs.appendFile('event.json', tested, function(err, fd) {
+            var inArr = '[' + tested + ']';
+            fs.appendFile('event.json', inArr, function(err, fd) {
               if (err) {
                 console.error(err);
               }
