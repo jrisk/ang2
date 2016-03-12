@@ -1,5 +1,7 @@
 export interface NewPlan {
 	id: number;
+	title: string;
 	date: string;
-	task: string;
+	start: string;
+	end: string;
 }

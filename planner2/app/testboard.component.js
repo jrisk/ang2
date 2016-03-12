@@ -27,7 +27,8 @@ System.register(['angular2/core', './new_plan.service'], function(exports_1) {
                     this.newplan = newplan;
                 };
                 TestBoard.prototype.ngOnInit = function () {
-                    this._newPlanService.getNewPlans(); //.then(newplans => this.newplans = newplans)
+                    var _this = this;
+                    this._newPlanService.getNewPlans().then(function () { return console.log(_this); });
                 };
                 TestBoard = __decorate([
                     core_1.Component({

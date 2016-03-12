@@ -25,11 +25,7 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1) {
                     this.http = http;
                 }
                 NewPlanService.prototype.getNewPlans = function () {
-                    return this.http.get('mocktest.json').map(function (res) { return res.json(); }).forEach(function (i) {
-                        console.log(i);
-                    }, function onError(err) {
-                        console.log(err);
-                    });
+                    return Promise.resolve(this.http.get('mocktest.json').map(function (res) { return res.json(); }));
                 };
                 NewPlanService = __decorate([
                     core_1.Injectable(), 

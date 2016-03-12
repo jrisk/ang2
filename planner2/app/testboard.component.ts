@@ -9,17 +9,17 @@ import {NewPlanService} from './new_plan.service'
 })
 
 export class TestBoard {
-	public newplan;
-	public newplans;//: NewPlan[] = [];
+	public newplan: NewPlan;
+	public newplans: any;
 
 	constructor(
 		private _newPlanService: NewPlanService) {}
 
-	newDetails(newplan: NewPlan[]) {
+	newDetails(newplan: NewPlan) {
 		this.newplan = newplan;
 	}
 
 	ngOnInit() {
-		this._newPlanService.getNewPlans();//.then(newplans => this.newplans = newplans)
+		this._newPlanService.getNewPlans().then(() => console.log(this));
 	}
 }
