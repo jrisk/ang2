@@ -3,7 +3,7 @@
 	<p>Hello there</p>
 	<div (click)="ngOnInit()">Click Test</div>
 	<br>
-	<div *ngFor="#newplan of newplans">
+	<div *ngFor="#newplan of newplans | async">
 	<b (click)="newDetails(newplan)">{{newplan.title}}</b>
 	</div>
 </div>

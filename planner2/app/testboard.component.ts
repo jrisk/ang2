@@ -20,6 +20,6 @@ export class TestBoard {
 	}
 
 	ngOnInit() {
-		this._newPlanService.getNewPlans().then(() => console.log(this));
+		this._newPlanService.getNewPlans().then(newplans => this.newplans = newplans);
 	}
 }

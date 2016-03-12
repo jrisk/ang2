@@ -5,6 +5,7 @@ import {NewPlan} from './new_plan'
 @Injectable()
 
 export class NewPlanService {
+	//newtest: 
 	http: Http;
 	constructor(http:Http) {
 		console.log('creating New Plans service for served event.json file');
