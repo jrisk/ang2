@@ -123,6 +123,22 @@ function listEvents(auth) {
     else 
     {
       console.log('Upcoming 10 events:');
+      console.log('call function, insert array of objects in event.json')
+      insertEvents(events, function(inArr) {
+        console.log('check inArr in callback of insertEvents:\n');
+        console.log(inArr);
+        fs.writeFile('events.json', '[' + inArr + ']', function(err, fd) {
+          if (err) throw err;
+          });
+        });
+        }
+      }
+    );
+}
+
+function insertEvents(events, callback) {
+
+      var inArr = [];
       for (var i = 0; i < events.length; i++) 
       {
         var event = events[i];
@@ -132,34 +148,13 @@ function listEvents(auth) {
           'id': i,
           'date' : event.start.dateTime,
           'task' : event.summary
+            }
+          var jsonString = JSON.stringify(jsonObj);
+          inArr.push(jsonString);
+          console.log(JSON.parse(jsonString));
+          console.log('pushing it right');
           }
-        //var eventJson = JSON.parse(jsonObj);
-        //write/append to file events.json
-        //if ()
-        fs.appendFile('events.json', JSON.stringify(jsonObj) + ',', function(err, fd) {
-          if (err) throw err;
-          process.stdout.write('test');
-        });
-        }
-        //erase the comma from after the last object? best way?
-        fs.readFile('events.json', 'utf-8', function(err, data) {
-          if (err)
-            console.error(err);
-          else {
-            var testy = data.toString();
-            var tested = testy.slice(0, testy.length-1);
-            var inArr = '[' + tested + ']';
-            fs.appendFile('event.json', inArr, function(err, fd) {
-              if (err) {
-                console.error(err);
-              }
-              else {
-                process.stdout.write('wrote a new json object to event.json');
-              }
-            });
-          }
-        });
+          console.log('out of for loop');
+          console.log(inArr);
+          callback(inArr);
       }
-    }
-    );
-}
