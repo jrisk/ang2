@@ -145,21 +145,22 @@ function insertEvents(events, callback) {
       {
         var event = events[i];
         var start = event.start.dateTime || event.start.date;
+        var end = event.end.dateTime || event.end.date;
 
-        var startParse = moment(start).format("dddd, MMMM Do YYYY, h:mm:ss a");
+        var dateFull = moment(start).format("dddd, MMMM Do");
+        var startTime = moment(start).format('h:mm:ss a');
+        var endTime = moment(end).format('h:mm:ss a');
 
         console.log('%s - %s', start, event.summary);
         var jsonObj = {
           'id': i,
-          'date' : startParse,
+          'date' : dateFull,
+          'start': startTime,
+          'end': endTime,
           'task' : event.summary
             }
           var jsonString = JSON.stringify(jsonObj);
           inArr.push(jsonString);
-          console.log(JSON.parse(jsonString));
-          console.log('pushing it right');
           }
-          console.log('out of for loop');
-          console.log(inArr);
           callback(inArr);
       }

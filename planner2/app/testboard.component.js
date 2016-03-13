@@ -22,13 +22,14 @@ System.register(['angular2/core', './new_plan.service'], function(exports_1) {
             TestBoard = (function () {
                 function TestBoard(_newPlanService) {
                     this._newPlanService = _newPlanService;
+                    this.dateArr = [];
                 }
                 TestBoard.prototype.newDetails = function (newplan) {
                     this.newplan = newplan;
                 };
                 TestBoard.prototype.ngOnInit = function () {
-                    var _this = this;
-                    Promise.resolve(this._newPlanService.getNewPlans()).then(function (newplans) { return _this.newplans = newplans; });
+                    this._newPlanService.getNewPlans();
+                    //.then(newplans => this.newplans = newplans);
                 };
                 TestBoard = __decorate([
                     core_1.Component({

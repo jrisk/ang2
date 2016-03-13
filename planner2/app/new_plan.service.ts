@@ -5,7 +5,6 @@ import {NewPlan} from './new_plan'
 @Injectable()
 
 export class NewPlanService {
-	//newtest: 
 	http: Http;
 	constructor(http:Http) {
 		console.log('creating New Plans service for served event.json file');
@@ -13,6 +12,43 @@ export class NewPlanService {
 	}
 
 	getNewPlans() {
-		return this.http.get('events.json').map(res => res.json());
+		//return Promise.resolve(this.http.get('events.json').map(res => res.json()));	
+		var newArr = [1,2];
+		let items = this.http.get('events.json')
+			.map(res => res.json())
+			.forEach(
+			(source) => {
+				console.log(source);
+				var i;
+				for (i = 0; i < source.length; i++) {
+					if (newArr.indexOf(source[i].date) == -1) {
+						newArr.push(source[i].date);
+						console.log(source[i].date);
+						}
+					}
+				console.log(newArr);
+				},
+			(next) => {
+			}
+			);
+			/*.subscribe(
+			(resp) => {
+				console.log('in onNext 1st function call');
+				console.log(resp.date);
+				if (newArr.indexOf(resp.date) == -1) {
+					newArr.push(resp.date);
+					console.log(resp.date);
+				}
+				else {
+					console.log('throw err?');
+				}
+			},
+			(err) => {
+				console.log(err);
+			},
+			() => {
+				console.log('completed promise forEach');
+				console.log(newArr);
+			})*/
 	}
 }

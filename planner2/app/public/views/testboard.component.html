@@ -6,5 +6,6 @@
 	<div *ngFor="#newplan of newplans | async">
 	<h3>{{newplan.date}}</h3>
 	<b (click)="newDetails(newplan)">{{newplan.task}}</b>
+	<h4>{{newplan.start}} - {{newplan.end}}</h4>
 	</div>
 </div>

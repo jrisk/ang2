@@ -12,6 +12,8 @@ export class TestBoard {
 	public newplan: NewPlan;
 	public newplans: any;
 
+	public dateArr = [];
+
 	constructor(
 		private _newPlanService: NewPlanService) {}
 
@@ -20,6 +22,7 @@ export class TestBoard {
 	}
 
 	ngOnInit() {
-		Promise.resolve(this._newPlanService.getNewPlans()).then(newplans => this.newplans = newplans);
+		this._newPlanService.getNewPlans()
+		//.then(newplans => this.newplans = newplans);
 	}
 }
