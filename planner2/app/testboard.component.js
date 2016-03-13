@@ -28,8 +28,22 @@ System.register(['angular2/core', './new_plan.service'], function(exports_1) {
                     this.newplan = newplan;
                 };
                 TestBoard.prototype.ngOnInit = function () {
-                    this._newPlanService.getNewPlans();
-                    //.then(newplans => this.newplans = newplans);
+                    var _this = this;
+                    Promise.resolve(this._newPlanService.getNewPlans())
+                        .then(function (newplans) { return _this.newplans = newplans; });
+                    var newArr = [];
+                    this._newPlanService.getNewPlans().forEach(function (source) {
+                        console.log(source);
+                        var i;
+                        for (i = 0; i < source.length; i++) {
+                            if (newArr.indexOf(source[i].date) == -1) {
+                                newArr.push(source[i].date);
+                                console.log(source[i].date);
+                            }
+                        }
+                        console.log(newArr);
+                    }, function (next) {
+                    });
                 };
                 TestBoard = __decorate([
                     core_1.Component({

@@ -12,25 +12,7 @@ export class NewPlanService {
 	}
 
 	getNewPlans() {
-		//return Promise.resolve(this.http.get('events.json').map(res => res.json()));	
-		var newArr = [1,2];
-		let items = this.http.get('events.json')
-			.map(res => res.json())
-			.forEach(
-			(source) => {
-				console.log(source);
-				var i;
-				for (i = 0; i < source.length; i++) {
-					if (newArr.indexOf(source[i].date) == -1) {
-						newArr.push(source[i].date);
-						console.log(source[i].date);
-						}
-					}
-				console.log(newArr);
-				},
-			(next) => {
-			}
-			);
+		return this.http.get('events.json').map(res => res.json());
 			/*.subscribe(
 			(resp) => {
 				console.log('in onNext 1st function call');
