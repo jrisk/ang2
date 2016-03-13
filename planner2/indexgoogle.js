@@ -3,6 +3,8 @@ var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
+var moment = require('moment');
+
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/calendar-nodejs-quickstart.json
 var SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
@@ -143,10 +145,13 @@ function insertEvents(events, callback) {
       {
         var event = events[i];
         var start = event.start.dateTime || event.start.date;
+
+        var startParse = moment(start).format("dddd, MMMM Do YYYY, h:mm:ss a");
+
         console.log('%s - %s', start, event.summary);
         var jsonObj = {
           'id': i,
-          'date' : event.start.dateTime,
+          'date' : startParse,
           'task' : event.summary
             }
           var jsonString = JSON.stringify(jsonObj);
