@@ -4,7 +4,7 @@
 	<div (click)="ngOnInit()">Click Test</div>
 	<br>
 	<div *ngFor="#newplan of newplans | async">
-	<h3>{{newplan.date}}</h3>
+	<h3>{{newplan.start}}</h3>
 	<b (click)="newDetails(newplan)">{{newplan.task}}</b>
 	<h4>{{newplan.start}} - {{newplan.end}}</h4>
 	</div>

@@ -21,12 +21,12 @@ var child = require('child_process'), googleCall;
 
 googleCall = child.exec('node indexgoogle', function(err, stdout, stderr) {
 	if (err) {
-		console.log(error.stack);
-		console.log('Error Code: ' + error.code);
-		console.log('Signal recieved: ' + error.signal);
+		console.log(err.stack);
+		console.log('Error Code: ' + err.code);
+		console.log('Signal recieved: ' + err.signal);
 	}
-	console.log('Child process Standard Output: ' + stdout);
 	console.log('Child process Standard Error: ' + stderr);
+	console.log('Child process Standard Output: ' + stdout);
 });
 
 googleCall.on('exit', function(code) {

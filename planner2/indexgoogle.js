@@ -126,12 +126,12 @@ function listEvents(auth) {
     {
       console.log('Upcoming 10 events:');
       console.log('call function, insert array of objects in event.json')
-      insertEvents(events, function(inArr) {
-        console.log('check inArr in callback of insertEvents:\n');
-        console.log(inArr);
-        fs.writeFile('events.json', '[' + inArr + ']', function(err, fd) {
+      insertEvents(events, function(inArr, eventMap) {
+        fs.writeFile('events.json', '[' + eventMap + ']', function(err, fd) {
           if (err) throw err;
           });
+        console.log(eventMap);
+        console.log('\nevents object array written to file events.json');
         });
         }
       }
@@ -141,6 +141,29 @@ function listEvents(auth) {
 function insertEvents(events, callback) {
 
       var inArr = [];
+      // map example added
+
+      var eventMap = events.map(function(curVal, index) {
+
+            var start = curVal.start.dateTime || curVal[index].start.date;
+            var end = curVal.end.dateTime || curVal[index].end.date;
+            var eventSum = curVal.summary;
+
+            var jsonMap = {
+              'id': index,
+              'start': start,
+              'end': end,
+              'task' : eventSum
+            };
+
+            var jsonMapString = JSON.stringify(jsonMap);
+            console.log(jsonMapString);
+
+            return jsonMapString;
+          });
+
+      console.log(eventMap);
+
       for (var i = 0; i < events.length; i++) 
       {
         var event = events[i];
@@ -148,13 +171,13 @@ function insertEvents(events, callback) {
         var end = event.end.dateTime || event.end.date;
 
         var dateFull = moment(start).format("dddd, MMMM Do");
-        var startTime = moment(start).format('h:mm:ss a');
-        var endTime = moment(end).format('h:mm:ss a');
+        var startTime = moment(start).format('h:mm:ss');
+        var endTime = moment(end).format('h:mm:ss');
 
         console.log('%s - %s', start, event.summary);
         var jsonObj = {
           'id': i,
-          'date' : dateFull,
+          'date' : start,
           'start': startTime,
           'end': endTime,
           'task' : event.summary
@@ -162,5 +185,13 @@ function insertEvents(events, callback) {
           var jsonString = JSON.stringify(jsonObj);
           inArr.push(jsonString);
           }
-          callback(inArr);
+          callback(inArr, eventMap);
+
+          //as forEach
+          /*
+          events.forEach(function(elem, index, arr) {
+            var start = elem[index].start.dateTime || elem[index].start.date
+          })
+          */
+          //as map function
       }
