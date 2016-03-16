@@ -126,7 +126,7 @@ function listEvents(auth) {
     {
       console.log('Upcoming 10 events:');
       console.log('call function, insert array of objects in event.json')
-      insertEvents(events, function(inArr, eventMap) {
+      insertEvents(events, function(eventMap) {
         fs.writeFile('events.json', '[' + eventMap + ']', function(err, fd) {
           if (err) throw err;
           });
@@ -140,58 +140,29 @@ function listEvents(auth) {
 
 function insertEvents(events, callback) {
 
-      var inArr = [];
-      // map example added
-
       var eventMap = events.map(function(curVal, index) {
 
-            var start = curVal.start.dateTime || curVal[index].start.date;
-            var end = curVal.end.dateTime || curVal[index].end.date;
+            var start = curVal.start.dateTime || curVal.start.date;
+            var end = curVal.end.dateTime || curVal.end.date;
             var eventSum = curVal.summary;
+
+            //convert ISO string to UTC for angular DatePipe
+            var startUTC = moment(start).valueOf();
+            var endUTC = moment(end).valueOf();
+
+            console.log(startUTC);
 
             var jsonMap = {
               'id': index,
-              'start': start,
-              'end': end,
+              'start': startUTC,
+              'end': endUTC,
               'task' : eventSum
             };
 
             var jsonMapString = JSON.stringify(jsonMap);
-            console.log(jsonMapString);
 
             return jsonMapString;
           });
 
-      console.log(eventMap);
-
-      for (var i = 0; i < events.length; i++) 
-      {
-        var event = events[i];
-        var start = event.start.dateTime || event.start.date;
-        var end = event.end.dateTime || event.end.date;
-
-        var dateFull = moment(start).format("dddd, MMMM Do");
-        var startTime = moment(start).format('h:mm:ss');
-        var endTime = moment(end).format('h:mm:ss');
-
-        console.log('%s - %s', start, event.summary);
-        var jsonObj = {
-          'id': i,
-          'date' : start,
-          'start': startTime,
-          'end': endTime,
-          'task' : event.summary
-            }
-          var jsonString = JSON.stringify(jsonObj);
-          inArr.push(jsonString);
-          }
-          callback(inArr, eventMap);
-
-          //as forEach
-          /*
-          events.forEach(function(elem, index, arr) {
-            var start = elem[index].start.dateTime || elem[index].start.date
-          })
-          */
-          //as map function
+      callback(eventMap);
       }
