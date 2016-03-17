@@ -30,20 +30,37 @@ System.register(['angular2/core', './new_plan.service'], function(exports_1) {
                 TestBoard.prototype.ngOnInit = function () {
                     var _this = this;
                     Promise.resolve(this._newPlanService.getNewPlans())
-                        .then(function (newplans) { return _this.newplans = newplans; });
+                        .then(function (newplans) { return _this.newplans = newplans; }).then(function (data) { return console.log(data); });
                     var newArr = [];
-                    this._newPlanService.getNewPlans().forEach(function (source) {
-                        console.log(source);
-                        var i;
-                        for (i = 0; i < source.length; i++) {
-                            if (newArr.indexOf(source[i].date) == -1) {
-                                newArr.push(source[i].date);
-                                console.log(source[i].date);
+                    /*var newMap = this._newPlanService.getNewPlans().map(
+                        (source, i) => {
+                            console.log(source);
+                            console.log(i);
+                            if (newArr.indexOf(source[i].start) == -1) {
+                                newArr.push(source[i].start);
                             }
-                        }
-                        console.log(newArr);
-                    }, function (next) {
+                            else {
+                                console.log('got the else');
+                            }
+                            console.log(newArr);
+                        });
+            
+                    newMap.forEach(function(something) {
+                        console.log(something);
+                    },
+                        function(hmm) {
+                            console.log(hmm);
+                        });*/
+                    var invalid = 0;
+                    var filterMap = this._newPlanService.getNewPlans().filter(function (item) {
+                        return item[2].start.valueOf(); //obs.indexOf(item[ind].start == -1);
                     });
+                    filterMap.subscribe(function (why) { console.log('next on filter: %s', why.start); }, function (err) { console.log('err: ', err); }, function () { console.log('completed on filter'); });
+                    /*newMap.subscribe(
+                        (x) => { console.log('next: %s', x); },
+                        (err) => { console.log('error: %s ',  err); },
+                        () => { console.log('on completed...'); }
+                    )*/
                 };
                 TestBoard = __decorate([
                     core_1.Component({

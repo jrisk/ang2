@@ -17,6 +17,9 @@ app.get(['/', '/dashboard', '/detail*', '/plans', '/login', '/test'], (req,res) 
 	res.sendFile(path.join(__dirname + '/app/public/views/planner.html'));
 });
 
+//stop calls to google for now and just work with mock service file events.json
+
+/*
 var child = require('child_process'), googleCall;
 
 googleCall = child.exec('node indexgoogle', function(err, stdout, stderr) {
@@ -32,3 +35,4 @@ googleCall = child.exec('node indexgoogle', function(err, stdout, stderr) {
 googleCall.on('exit', function(code) {
 	console.log('Child process exited with function code: ' + code);
 });
+*/
