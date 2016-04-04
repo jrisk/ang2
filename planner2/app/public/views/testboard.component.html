@@ -4,9 +4,15 @@
 	<div (click)="ngOnInit()">Click Test</div>
 	<br>
 	<div *ngFor="#newplan of newplans | async">
-	<h3>{{newplan.start | date:'MM/dd/yy'}}</h3>
-	<b (click)="newDetails(newplan)">{{newplan.task}}</b>
-	<h4>{{newplan.start | date:'shortTime' }} - {{newplan.end | date:'shortTime'}}</h4>
+		<br>
+		<label for="actdate">Date: </label>
+		<span #actdate id="actdate">{{newplan.start | date:'MM/dd/yy'}}</span>
+		<br>
+		<br>
+		<div id="actbox">
+			<b #acttime>{{newplan.start | date:'shortTime' }} - {{newplan.end | date:'shortTime'}}</b>
+			<p (click)="newDetails(newplan)" id="acttask">{{newplan.task}}</p>
+		</div>
 	</div>
 	<!-- <div>test: {{new Date('2016-03-16T12:00:00-04:00') | date}}</div> -->
 </div>
