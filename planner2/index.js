@@ -9,28 +9,29 @@ pg = require('pg'),
 path = require('path'),
 fs = require('fs'),
 assert = require('assert'),
-passport = require('passport'),
-LocalStrategy = require('passport-local'),
-TwitterStrategy = require('passport-twitter'),
-GoogleStrategy = require('passport-google'),
-FacebookStrategy = require('passport-facebook'),
 
+passport = require('passport'),
+
+mongoose = require('mongoose'),
+flash = require('connect-flash'),
 exphbs = require('express-handlebars'),
 logger = require('morgan');
 
-//We will be creating these two files shortly
-// var config = require('./config.js'), //config file contains all tokens and other private info
-// funct = require('./functions.js'); //funct file contains our helper functions for our Passport and database work
+var config = require('./config.js'), //config file contains all tokens and other private info
+//configDB = require('./database.js'), //make database file
+funct = require('./functions.js'); //funct file contains our helper functions for our Passport and database work
 
-/************ PASSPORT FUNCTIONS ******************/
+const port = 3000;
 
-//passport routing stuff
+// mongoose db config use
 
-/************ EXPRESS ROUTING ********************/
+//mongoose.connect(configDB.url);
+
+// require('./passport')(passport); // pass passport for configuration
+
+/************ EXPRESS INITIALIZING ********************/
 
 var app = express();
-
-//app.use(express.static(__dirname + '/'));
 
 app.use(logger('combined'));
 app.use(cookieParser());
@@ -62,19 +63,25 @@ app.use(function(req,res,next) {
 });
 
 /******** LISTEN ON PORT 3000 **********/
-app.listen(3000);
+app.listen(port);
+
+console.log("app started on" + port);
 
 //configure to use handlebars template
 
 app.set('views', path.join(__dirname + '/app/public/views'));
 
 var hbs = exphbs.create({
-    //defaultLayout: 'main', //we will be creating this layout shortly
-    layoutsDir: '/app/public/views/'
+    layoutsDir: 'app/public/views/',
+    defaultLayout: 'main', //we will be creating this layout shortly
 });
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+//============ ROUTE FILE ==============//
+require('./routes.js')(app, passport);
+
 
 /*************** ROUTES FOR ANGULAR ***************
 
@@ -88,42 +95,8 @@ app.get('/new', (req,res) => {
 	googleServer();
 });
 
-*********** END ANGULAR ROUTES ***************/
+**************** ANGULAR ROUTES END *****************/
 
-/*********** HANDLEBARS/PASSPORT ROUTES *************/
-
-//displays our homepage
-app.get('/', function(req, res){
-  res.render('home', {user: req.user});
-});
-
-//displays our signup page
-app.get('/signin', function(req, res){
-  res.render('signin');
-});
-
-//sends the request through our local signup strategy, and if successful takes user to homepage, otherwise returns then to signin page
-app.post('/local-reg', passport.authenticate('local-signup', {
-  successRedirect: '/',
-  failureRedirect: '/signin'
-  })
-);
-
-//sends the request through our local login/signin strategy, and if successful takes user to homepage, otherwise returns then to signin page
-app.post('/login', passport.authenticate('local-signin', {
-  successRedirect: '/',
-  failureRedirect: '/signin'
-  })
-);
-
-//logs user out of site, deleting them from the session, and returns to homepage
-app.get('/logout', function(req, res){
-  var name = req.user.username;
-  console.log("LOGGIN OUT " + req.user.username)
-  req.logout();
-  res.redirect('/');
-  req.session.notice = "You have successfully been logged out " + name + "!";
-});
 
 //stop calls to google for now and just work with mock service file events.json
 
