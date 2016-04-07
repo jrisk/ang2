@@ -7,14 +7,10 @@ module.exports = function(app,passport) {
 		res.render('home', {user: req.user});
 	});
 
-	app.get('/signup', function(req,res) {
-		res.render('signup', { message: req.flash('signupMessage') });
-	});
-
 	//process the signup form
 	app.post('/signup', passport.authenticate('local-signup', {
 		successRedirect: '/profile',
-		failureRedirect: '/',
+		failureRedirect: '/signup',
 		failureFlash: true
 	})
 	);

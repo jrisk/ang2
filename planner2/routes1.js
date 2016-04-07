@@ -1,4 +1,4 @@
-//routes.js
+//routes1.js
 /*********** HANDLEBARS/PASSPORT ROUTES *************/
 
 module.exports = function(app,passport) {
@@ -7,24 +7,11 @@ module.exports = function(app,passport) {
 		res.render('home', {user: req.user});
 	});
 
-	app.get('/signup', function(req,res) {
-		res.render('signup', { message: req.flash('signupMessage') });
-	});
-
-	//process the signup form
-	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect: '/profile',
-		failureRedirect: '/',
-		failureFlash: true
-	})
-	);
-
 		//displays our signup page
 	app.get('/signin', function(req, res){
 	  res.render('signin');
 	});
 
-	/*
 	//sends the request through our local signup strategy, and if successful takes user to homepage, otherwise returns then to signin page
 	app.post('/local-reg', passport.authenticate('local-signup', {
 	  successRedirect: '/',
@@ -47,5 +34,4 @@ module.exports = function(app,passport) {
 	  res.redirect('/');
 	  req.session.notice = "You have successfully been logged out " + name + "!";
 	});
-*/
 }

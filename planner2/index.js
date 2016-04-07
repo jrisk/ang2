@@ -17,9 +17,9 @@ flash = require('connect-flash'),
 exphbs = require('express-handlebars'),
 logger = require('morgan');
 
-var config = require('./config.js'), //config file contains all tokens and other private info
-configDB = require('./database.js'), //make database file
-funct = require('./functions.js'); //funct file contains our helper functions for our Passport and database work
+var //config = require('./config.js'), //config file contains all tokens and other private info
+configDB = require('./database.js'); //,make database file
+//funct = require('./functions.js'); //funct file contains our helper functions for our Passport and database work
 
 const port = 3000;
 
@@ -27,7 +27,7 @@ const port = 3000;
 
 mongoose.connect(configDB.url);
 
-// require('./passport')(passport); // pass passport for configuration
+require('./passport')(passport); // pass passport for configuration
 
 /************ EXPRESS INITIALIZING ********************/
 
@@ -35,15 +35,21 @@ var app = express();
 
 app.use(logger('combined'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-app.use(session({secret: 'supernova',
-	saveUninitialized: true, resave: true}));
+/*app.use(session({secret: 'supernova',
+	saveUninitialized: true, resave: true})); */
+
+app.use(session({ secret: 'hello', saveUninitialized: true, resave: true }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+//for flash messages
+app.use(flash());
 
 // SESSION-PERSISTED MESSAGE MIDDLEWARE
 app.use(function(req,res,next) { 
@@ -65,7 +71,7 @@ app.use(function(req,res,next) {
 /******** LISTEN ON PORT 3000 **********/
 app.listen(port);
 
-console.log("app started on" + port);
+console.log("app started on port: " + port);
 
 //configure to use handlebars template
 
@@ -80,9 +86,9 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 //============= PASSPORT STRATEGY MODULES ==========/
-require('./passport1.js')(passport);
+//require('./passport1.js')(passport);
 //============ ROUTE FILE ==============//
-require('./routes.js')(app, passport);
+require('./routes')(app, passport);
 
 
 /*************** ROUTES FOR ANGULAR ***************
