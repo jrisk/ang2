@@ -1,51 +1,70 @@
 //routes.js
-/*********** HANDLEBARS/PASSPORT ROUTES *************/
+/*********** EJS/PASSPORT ROUTES *************/
 
 module.exports = function(app,passport) {
+
+	// ============ HOME PAGE with login links ========
 	
 	app.get('/', function(req,res) {
-		res.render('home', {user: req.user});
+		res.render('index.ejs');
 	});
+
+	//========= LOGIN ==========
+	// show the login form
+
+	app.get('/login', function(req,res) {
+
+		//render page and pass flash data if it exists
+		res.render('login.ejs', { message: req.flash('loginMessage') });
+	});
+
+	// process the login form
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect: '/profile',
+		failureRedirect: '/login',
+		failureFlash: true
+	}));
+
+	//============= SIGNUP ===========/
+	//show the signup form
 
 	app.get('/signup', function(req,res) {
-		res.render('signup', { message: req.flash('signupMessage') });
+		//render page and any flash data
+		res.render('signup.ejs', { message: req.flash('signupMessage') });
 	});
 
-	//process the signup form
+	// process the signup form
 	app.post('/signup', passport.authenticate('local-signup', {
 		successRedirect: '/profile',
-		failureRedirect: '/',
+		failureRedirect: '/signup',
 		failureFlash: true
-	})
-	);
+	}));
 
-		//displays our signup page
-	app.get('/signin', function(req, res){
-	  res.render('signin');
+	// ============== PROFILE SECTION ============
+	//we want this protect so you have to be logged in to visit it
+	//use route middleware to verify that (isLoggedIn function)
+
+	app.get('/profile', isLoggedIn, function(req,res) {
+		res.render('profile.ejs', {
+			user: req.user // get user from session and pass to template
+		});
 	});
 
-	/*
-	//sends the request through our local signup strategy, and if successful takes user to homepage, otherwise returns then to signin page
-	app.post('/local-reg', passport.authenticate('local-signup', {
-	  successRedirect: '/',
-	  failureRedirect: '/signin'
-	  })
-	);
+	//=========== LOGOUT SECTION
 
-	//sends the request through our local login/signin strategy, and if successful takes user to homepage, otherwise returns then to signin page
-	app.post('/login', passport.authenticate('local-signin', {
-	  successRedirect: '/',
-	  failureRedirect: '/signin'
-	  })
-	);
-
-	//logs user out of site, deleting them from the session, and returns to homepage
-	app.get('/logout', function(req, res){
-	  var name = req.user.username;
-	  console.log("LOGGIN OUT " + req.user.username)
-	  req.logout();
-	  res.redirect('/');
-	  req.session.notice = "You have successfully been logged out " + name + "!";
+	app.get('/logout', function(res, res) {
+		req.logout();
+		res.redirect('/');
 	});
-*/
-}
+};
+
+	//=========== route middleware isLoggedIn to make sure user is logged in
+
+	function isLoggedIn(req, res, next) {
+
+		if (req.isAuthenticated())
+			return next();
+
+		//if not authenticated and logged in, redirect to home page
+		res.redirect('/');
+	}
