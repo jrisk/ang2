@@ -10,7 +10,7 @@ exports.localReg = function (username, password) {
   var user = {
     "username": username,
     "password": hash,
-    "avatar": "http://placepuppy.it/images/homepage/Beagle_puppy_6_weeks.JPG"
+    "avatar": "https://pbs.twimg.com/profile_images/487215058976403456/OZBhZckW.jpeg"
   }
   //check if username is already assigned in our database
   db.get('local-users', username)
@@ -68,4 +68,10 @@ exports.localAuth = function (username, password) {
   });
 
   return deferred.promise;
+}
+
+//use for facebook strategy
+
+exports.fbookAuth = function(username, password) {
+  
 }

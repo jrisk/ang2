@@ -2,8 +2,9 @@ var LocalStrategy = require('passport-local'),
 TwitterStrategy = require('passport-twitter'),
 GoogleStrategy = require('passport-google'),
 FacebookStrategy = require('passport-facebook'),
+passport = require('passport'),
 
-funct = require('./functions.js'),
+funct = require('./functions.js');
 
 /************ PASSPORT FUNCTIONS ******************/
 
@@ -18,6 +19,9 @@ funct = require('./functions.js'),
   })
 */
 // Use the LocalStrategy within Passport to login/”signin” users.
+
+module.exports = function(passport) {
+
 passport.use('local-signin', new LocalStrategy(
   {passReqToCallback : true}, //allows us to pass back the request to the callback
   function(req, username, password, done) {
@@ -79,6 +83,8 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   req.session.error = 'Please sign in!';
   res.redirect('/signin');
+  }
+
 }
 
 /************** ORCHESTRATE PASSPORT FUNCTIONS END ******************/

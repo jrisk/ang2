@@ -18,14 +18,14 @@ exphbs = require('express-handlebars'),
 logger = require('morgan');
 
 var config = require('./config.js'), //config file contains all tokens and other private info
-//configDB = require('./database.js'), //make database file
+configDB = require('./database.js'), //make database file
 funct = require('./functions.js'); //funct file contains our helper functions for our Passport and database work
 
 const port = 3000;
 
 // mongoose db config use
 
-//mongoose.connect(configDB.url);
+mongoose.connect(configDB.url);
 
 // require('./passport')(passport); // pass passport for configuration
 
@@ -79,6 +79,8 @@ var hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+//============= PASSPORT STRATEGY MODULES ==========/
+require('./passport1.js')(passport);
 //============ ROUTE FILE ==============//
 require('./routes.js')(app, passport);
 
