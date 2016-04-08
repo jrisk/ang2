@@ -12,6 +12,8 @@ lib-cov
 
 *.pem
 
+nodeauth/scotch/config/
+
 pids
 logs
 results

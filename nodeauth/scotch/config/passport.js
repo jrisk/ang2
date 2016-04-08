@@ -1,6 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy,
-passport = require('passport'),
+FacebookStrategy = require('passport-facebook').Strategy;
 
+//load auth variables
+var configAuth = require('./auth'),
 //load user model
 User = require('../models/user');
 
@@ -21,6 +23,62 @@ module.exports = function(passport) {
 			done(err, user);
 		});
 	});
+
+	//===============================================================
+	//============FACEBOOK STRATEGY =================================
+	//===============================================================
+
+	passport.use(new FacebookStrategy({
+
+		//pull in app id and secret from auth.js
+		clientID : configAuth.facebookAuth.clientID,
+		clientSecret : configAuth.facebookAuth.clientSecret,
+		callbackURL : configAuth.facebookAuth.callbackURL,
+		profileFields: ['id', 'emails', 'name']
+	},
+
+	//facebook will send back a token and the profile
+	function(token, refreshToken, profile, done) {
+
+		//async
+		process.nextTick(function() {
+
+			//find user in db based on facebook id
+			console.log(profile);
+
+			User.findOne({ 'facebook.id' : profile.id }, function(err,user) {
+				if (err)
+					return done(err);
+
+				if (user) {
+					return done(null, user);
+				}
+				else {
+					//if no user found with that facebook id, create them
+					var newUser = new User();
+
+					//set all the facebook info in our user model
+
+					newUser.facebook.id = profile.id;
+					newUser.facebook.token = token;
+					newUser.facebook.email = profile.emails[0].value;
+					newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName //could fail?
+
+					newUser.save(function(err) {
+						if (err)
+							throw err;
+						return done(null, newUser);
+					});
+				} //end of else block
+			}) //end db ops
+		}) //end process nexttick block
+	} //end fbook strategy callback
+
+	)); //end fbook strategy use
+
+	//===============================================================
+	//============LOCAL STRATEGY ====================================
+	//===============================================================
 
 	//======= LOGIN SETUP
 	//use named strategies because one for SIGNUP and one for LOGIN
