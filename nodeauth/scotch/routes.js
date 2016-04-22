@@ -51,6 +51,19 @@ module.exports = function(app,passport) {
 	});
 
 	// ===========================================================
+	//==================== TWITTER ROUTES ========================
+	// ===========================================================
+
+	app.get('/auth/twitter', passport.authenticate('twitter'));
+
+	//handle the info twitter sends back
+
+	app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+		successRedirect: '/profile',
+		failureRedirect: '/'
+	}));
+
+	// ===========================================================
 	//==================== FACEBOOK ROUTES =======================
 	// ===========================================================
 
