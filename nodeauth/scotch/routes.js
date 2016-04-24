@@ -93,7 +93,7 @@ module.exports = function(app,passport) {
 	// AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 	// =============================================================================
 
-	/*
+	
     // locally --------------------------------
         app.get('/connect/local', function(req, res) {
             res.render('connect-local.ejs', { message: req.flash('loginMessage') });
@@ -103,9 +103,88 @@ module.exports = function(app,passport) {
             failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
-	
-	*/
-	
+
+    // facebook -------------------------------
+        // send to facebook to do the authentication
+        app.get('/connect/facebook', passport.authorize('facebook', { scope : [ 'email' ] }));
+
+        // handle the callback after facebook has authorized the user
+        app.get('/connect/facebook/callback',
+            passport.authorize('facebook', {
+                successRedirect : '/profile',
+                failureRedirect : '/'
+            }));
+    //twitter ----------------------------------
+    	//send to twitter for authentication
+    	app.get('/connect/twitter', passport.authenticate('twitter', { scope : [ 'email' ] }));
+
+    	//handle callback after authorization
+
+    	app.get('/connect/twitter/callback',
+    		passport.authorize('twitter', {
+    			successRedirect: '/profile',
+    			failureRedirect: '/'
+    		}));
+    //google ------------------------------------
+    	//send to google for authentication
+    	app.get('/connect/google', passport.authenticate('google', { scope: ['email', 'profile']}))
+		
+		//handle callback for authorizing
+		app.get('/connect/google/callback',
+			passport.authorize('google', {
+				successRedirect: '/profile',
+				failureRedirect: '/'
+			}));
+
+		// =============================================================================
+		// UNLINK ACCOUNTS =============================================================
+		// =============================================================================
+		// used to unlink accounts. for social accounts, just remove the token
+		// for local account, remove email and password
+		// user account will stay active in case they want to reconnect in the future
+
+		app.get('/unlink/facebook', function(req, res) {
+			var user = req.user;
+
+			user.facebook.token = undefined;
+
+			user.save(function(err) {
+				res.redirect('/profile');
+			});
+		});
+
+		app.get('/unlink/local', function(req,res) {
+			var user = req.user;
+
+			user.local.email = undefined;
+			user.local.password = undefined;
+
+			user.save(function(err) {
+				res.redirect('/profile');
+			})
+		})
+
+		app.get('/unlink/twitter', function(req, res) {
+			var user = req.user;
+
+			user.twitter.token = undefined;
+
+			user.save(function(err) {
+				res.redirect('/profile');
+			});
+		});
+
+		app.get('/unlink/google', function(req, res) {
+			var user = req.user;
+
+			user.google.token = undefined;
+
+			user.save(function(err) {
+				res.redirect('/profile');
+			});
+		});
+
+
 	//=========== LOGOUT SECTION
 
 	app.get('/logout', function(req, res) {
@@ -118,8 +197,9 @@ module.exports = function(app,passport) {
 
 	function isLoggedIn(req, res, next) {
 
-		if (req.isAuthenticated())
+		if (req.isAuthenticated()) {
 			return next();
+		}
 
 		//if not authenticated and logged in, redirect to home page
 		res.redirect('/');
