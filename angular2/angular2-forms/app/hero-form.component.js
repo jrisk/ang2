@@ -1,4 +1,6 @@
-System.register(['angular2/core', './hero'], function(exports_1) {
+System.register(['angular2/core', './hero'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -23,7 +25,7 @@ System.register(['angular2/core', './hero'], function(exports_1) {
                 function HeroFormComponent() {
                     //powers doesnt appear on new hero button, must be reset manually diffrent in newHero()
                     this.powers = ["Fire", "Water", "Earth", "invisibility", "Can become invisible when no one is around"];
-                    this.model = new hero_1.Hero(9876, "The Invisible Man", this.powers[0], "kenny chesney");
+                    this.model = new hero_1.Hero(9876, "The Invisible Man", "invisibility", "kenny chesney");
                     this.submitted = false;
                     this.active = true; // workaround flag
                 }
@@ -36,6 +38,11 @@ System.register(['angular2/core', './hero'], function(exports_1) {
                     //workaround for proper form reset feature, this is a hack
                     this.active = false;
                     setTimeout(function () { return _this.active = true; }, 0);
+                };
+                //this wasnt in the tutorial
+                HeroFormComponent.prototype.onChange = function (newVal) {
+                    console.log(newVal);
+                    this.model.power = newVal;
                 };
                 Object.defineProperty(HeroFormComponent.prototype, "diagnostic", {
                     get: function () {
@@ -52,7 +59,7 @@ System.register(['angular2/core', './hero'], function(exports_1) {
                     __metadata('design:paramtypes', [])
                 ], HeroFormComponent);
                 return HeroFormComponent;
-            })();
+            }());
             exports_1("HeroFormComponent", HeroFormComponent);
         }
     }

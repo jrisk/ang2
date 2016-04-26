@@ -1,4 +1,6 @@
-System.register([], function(exports_1) {
+System.register([], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var Logger;
     return {
         setters:[],
@@ -10,7 +12,7 @@ System.register([], function(exports_1) {
                 Logger.prototype.error = function (msg) { console.error(msg); };
                 Logger.prototype.warn = function (msg) { console.warn(msg); };
                 return Logger;
-            })();
+            }());
             exports_1("Logger", Logger);
         }
     }
