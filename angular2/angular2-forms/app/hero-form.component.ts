@@ -1,10 +1,10 @@
-import {Component} from 'angular2/core'
+import {Component,Input} from 'angular2/core'
 import {NgForm} from 'angular2/common'
 import {Hero} from './hero'
 
 @Component({
 	selector: 'hero-form',
-	templateUrl: './app/hero_form.component.html'
+	templateUrl: './app/hero-form.component.html'
 })
 
 export class HeroFormComponent {
@@ -17,6 +17,8 @@ export class HeroFormComponent {
 
 	active = true; // workaround flag
 
+	test = "wtf mang herofrom";
+	
 	onSubmit() {
 		this.submitted = true;
 	}

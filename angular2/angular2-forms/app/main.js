@@ -1,6 +1,4 @@
-System.register(['angular2/platform/browser', './formapp.component'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/platform/browser', './formapp.component'], function(exports_1) {
     var browser_1, formapp_component_1;
     return {
         setters:[

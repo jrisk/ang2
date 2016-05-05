@@ -1,41 +1,37 @@
 <html>
-<head>
-<title>Angular 2 quickstart</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="angular 2 tutorial demo quickstart">
+  <head>
+    <title>Angular 2 QuickStart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./app/style.css">
 
-  <!-- 1. Load libraries -->
-    <!-- IE required polyfills, in this exact order -->
+    <!-- 1. Load libraries -->
+     <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
 
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
 
-<!-- 2. Configure SystemJS -->
-<script>
-
-System.config({
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+    System.config({
 	packages: {
 		app: {
-			format: 'register',
 			defaultExtension: 'js'
-			}
 		}
+	}
 	});
-System.import('app/main')
-	.then(null, console.error.bind(console));
-</script>
+      System.import('app')
+      .catch(function(err){ 
+      	console.error(err);  
+      });
+    </script>
+  </head>
 
-</head>
-
-<!-- Display the Application -->
-<body>
-	<home-app>Loading</home-app>
-</body>
-
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
 </html>
-
-

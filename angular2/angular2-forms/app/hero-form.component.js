@@ -1,6 +1,4 @@
-System.register(['angular2/core', './hero'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', './hero'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -28,6 +26,7 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
                     this.model = new hero_1.Hero(9876, "The Invisible Man", "invisibility", "kenny chesney");
                     this.submitted = false;
                     this.active = true; // workaround flag
+                    this.test = "wtf mang herofrom";
                 }
                 HeroFormComponent.prototype.onSubmit = function () {
                     this.submitted = true;
@@ -54,12 +53,12 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
                 HeroFormComponent = __decorate([
                     core_1.Component({
                         selector: 'hero-form',
-                        templateUrl: './app/hero_form.component.html'
+                        templateUrl: './app/hero-form.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HeroFormComponent);
                 return HeroFormComponent;
-            }());
+            })();
             exports_1("HeroFormComponent", HeroFormComponent);
         }
     }

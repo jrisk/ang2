@@ -1,4 +1,4 @@
-import {bootstrap} from 'angular2/platform/browser';
-import {AppComponent} from './app.component';
+import {boostrap} from '@angular/platform-browser-dynamic';
+import {AppComponent} from 'grid.component';
 
-bootstrap(AppComponent);
+boostrap(AppComponent);
