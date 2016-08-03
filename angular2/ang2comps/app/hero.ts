@@ -1,7 +1,6 @@
 export class Hero {
-	name: string;
+  name: string;
 }
-	
 
 export const HEROES = [
   {name: 'Mr. IQ'},
